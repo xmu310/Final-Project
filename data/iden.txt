@@ -1,0 +1,12 @@
+Sheriff:警長(Sheriff)
+消滅所有歹徒和叛徒。
+:
+Deputy_Sheriff:副警長(Deputy Sheriff)
+保護警長，消滅所有歹徒和叛徒。
+:
+Outlaw:歹徒(Outlaw)
+除掉警長。
+:
+Renegade:叛徒(Renegade)
+成為最後一位生存者。
+:
