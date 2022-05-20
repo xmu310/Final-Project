@@ -95,4 +95,4 @@ typedef struct _sPlayer{
 }sPlayer;
 
 extern int64_t PlayerNum;
-extern sPlayer player[PlayerNum];
+extern sPlayer *player;//It'll be sPlayer player[PlayerNum]

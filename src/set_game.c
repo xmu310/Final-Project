@@ -15,7 +15,7 @@ sPile stock_pile[CardNum];
 sPile discard_pile[CardNum];
 
 int64_t PlayerNum;
-sPlayer player[PlayerNum];
+sPlayer *player;
 
 void checkdef();
 void init_arr();
