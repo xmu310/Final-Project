@@ -1,7 +1,7 @@
 #include"func.h"
-#include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<time.h>
 
 char *suit_nametxt[SuitNum];
 char *iden_nametxt[IdenNum];
@@ -13,23 +13,29 @@ char *type_nametxt[TypeNum];
 char *type_helptxt[TypeNum];
 char *rank_nametxt[RankNum+1];
 
+int64_t StockNum;
+int64_t DiscardNum;
 sPile stock_pile[CardNum];
 sPile discard_pile[CardNum];
 
-int64_t PlayerNum;
+int64_t PlayerTotalNum;
 sPlayer player[PlayerMaxNum];
 
 void checkdef();
 void init_arr();
 void init_card();
-void init_game();
+void init_player();
 
-int64_t set_game(int64_t player_num){
+int64_t set_game(int64_t player_total_num){
 	checkdef();
-	if(player_num<4||player_num>7)return 0;
+	if(player_total_num<4||player_total_num>7)return 0;
+	srand(time(0));
+	PlayerTotalNum=player_total_num;
+	StockNum=CardNum;
+	DiscardNum=0;
 	init_arr();
 	init_card();
-	init_game();
+	init_player();
 	return 1;
 }
 
@@ -234,6 +240,37 @@ void init_card(){
 	if(total!=CardNum){printf("added card (%ld) != CardNum (%d)\n",total,CardNum);exit(0);}
 }
 
-void init_game(){
-	shuffling(stock_pile,CardNum);
+void init_player(){
+	shuffling(stock_pile,StockNum);
+	eIden player_iden_arr[PlayerMaxNum]={
+		Sheriff,
+		Outlaw,
+		Outlaw,
+		Renegade,
+		Deputy_Sheriff,
+		Outlaw,
+		Sheriff
+	};
+	for(int i=0;i<PlayerMaxNum;i++)player[i].iden=player_iden_arr[i];
+	for(int i=0;i<100;i++){
+		int64_t x,y;
+		x=rand()%PlayerTotalNum;
+		while((y=rand()%PlayerTotalNum)==x)1;
+		eIden tmp=player[x].iden;
+		player[x].iden=player[y].iden;
+		player[y].iden=tmp;
+	}
+	for(int i=0;i<PlayerTotalNum;i++){
+		int64_t check=0;
+		while(!check){
+			check=1;
+			player[i].role=rand()%RoleNum;
+			for(int j=0;j<i;j++)if(player[i].role==player[j].role)check=0;
+		}
+		player[i].blood=role_blood[player[i].role];
+		if(player[i].iden==Sheriff)player[i].blood++;
+		player[i].alive=1;
+		player[i].handnum=player[i].blood;
+		player[i].effectnum=0;
+	}
 }

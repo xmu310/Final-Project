@@ -97,6 +97,9 @@ extern char *rank_nametxt[RankNum+1];
 
 #define CardNum 80
 
+extern int64_t StockNum;
+extern int64_t DiscardNum;
+
 extern sPile stock_pile[CardNum];
 extern sPile discard_pile[CardNum];
 
@@ -104,13 +107,14 @@ typedef struct _sPlayer{
 	eIden iden;
 	eRole role;
 	int64_t blood;
+	int64_t alive;
+	int64_t handnum;
+	int64_t effectnum;
 	sPile hand[CardNum];
 	sPile effect[CardNum];
-	int64_t hand_num;
-	int64_t role_num;
 }sPlayer;
 
 #define PlayerMaxNum 7
 
-extern int64_t PlayerNum;
+extern int64_t PlayerTotalNum;
 extern sPlayer player[PlayerMaxNum];

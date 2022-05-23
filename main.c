@@ -9,11 +9,8 @@ int main(){
 		printf("Error!\n");
 		return 0;
 	}
-	for(int i=0;i<CardNum;i++){
-		printf("%d:\n",i+1);
-		printf("%s\n",type_nametxt[stock_pile[i].type]);
-		printf("(%s,",suit_nametxt[stock_pile[i].suit]),
-		printf("%s)\n",rank_nametxt[stock_pile[i].rank]);
+	for(int i=0;i<PlayerNum;i++){
+		printf("%s\n",role_nametxt[player[i].role]);
 	}
 	return 0;
 }
