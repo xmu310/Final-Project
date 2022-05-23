@@ -1,7 +1,6 @@
 #pragma once
+#include<stdio.h>
 #include<stdint.h>
-
-#define RankNum 13
 
 typedef enum _eSuit{
 	Spade,
@@ -11,6 +10,8 @@ typedef enum _eSuit{
 	SuitNum//4
 }eSuit;
 
+extern char *suit_nametxt[SuitNum];
+
 typedef enum _eIden{
 	Sheriff,
 	Deputy_Sheriff,
@@ -18,6 +19,9 @@ typedef enum _eIden{
 	Renegade,
 	IdenNum//4
 }eIden;
+
+extern char *iden_nametxt[IdenNum];
+extern char *iden_helptxt[IdenNum];
 
 typedef enum _eRole{
 	Bart_Cassidy,
@@ -38,6 +42,10 @@ typedef enum _eRole{
 	Willy_the_Kid,
 	RoleNum//16
 }eRole;
+
+extern int64_t role_blood[RoleNum];
+extern char *role_nametxt[RoleNum];
+extern char *role_helptxt[RoleNum];
 
 typedef enum _eType{
 	Bang,//yellow card start//
@@ -67,19 +75,25 @@ typedef enum _eType{
 	TypeNum//23
 }eType;
 
-extern char *iden_nametxt[IdenNum];
-extern char *iden_helptxt[IdenNum];
-extern int64_t role_blood[RoleNum];
-extern char *role_nametxt[RoleNum];
-extern char *role_helptxt[RoleNum];
 extern char *type_nametxt[TypeNum];
 extern char *type_helptxt[TypeNum];
+
+typedef enum _eRank{
+	A=1,
+	J=11,
+	Q,
+	K
+}eRank;
 
 typedef struct _sPile{
 	eType type;
 	eSuit suit;
-	int64_t rank;
+	eRank rank;
 }sPile;
+
+#define RankNum 13
+
+extern char *rank_nametxt[RankNum+1];
 
 #define CardNum 80
 
@@ -90,9 +104,13 @@ typedef struct _sPlayer{
 	eIden iden;
 	eRole role;
 	int64_t blood;
-	int64_t hand[TypeNum][SuitNum][RankNum];
-	int64_t effect[TypeNum][SuitNum][RankNum];
+	sPile hand[CardNum];
+	sPile effect[CardNum];
+	int64_t hand_num;
+	int64_t role_num;
 }sPlayer;
 
+#define PlayerMaxNum 7
+
 extern int64_t PlayerNum;
-extern sPlayer *player;//It'll be sPlayer player[PlayerNum]
+extern sPlayer player[PlayerMaxNum];
