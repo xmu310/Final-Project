@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdint.h>
-#include"all.h"
+#include"src/def.h"
+#include"src/func.h"
 int main(){
 	int num;
 	printf("Please enter the player number:");

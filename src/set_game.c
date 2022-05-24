@@ -13,12 +13,10 @@ char *type_nametxt[TypeNum];
 char *type_helptxt[TypeNum];
 char *rank_nametxt[RankNum+1];
 
-int64_t StockNum;
-int64_t DiscardNum;
-sPile stock_pile[CardNum];
-sPile discard_pile[CardNum];
+sPile stock;
+sPile discard;
 
-int64_t PlayerTotalNum;
+int64_t PlayerNum;
 sPlayer player[PlayerMaxNum];
 
 void checkdef();
@@ -26,13 +24,13 @@ void init_arr();
 void init_card();
 void init_player();
 
-int64_t set_game(int64_t player_total_num){
+int64_t set_game(int64_t player_num){
 	checkdef();
-	if(player_total_num<4||player_total_num>7)return 0;
+	if(player_num<4||player_num>7)return 0;
 	srand(time(0));
-	PlayerTotalNum=player_total_num;
-	StockNum=CardNum;
-	DiscardNum=0;
+	PlayerNum=player_num;
+	stock.num=CardNum;
+	discard.num=0;
 	init_arr();
 	init_card();
 	init_player();
@@ -40,7 +38,6 @@ int64_t set_game(int64_t player_total_num){
 }
 
 #define checkdef_m(x,y) do{if(x!=y){printf(#x" in def.h is wrong!\n");exit(0);}}while(0)
-
 void checkdef(){
 	checkdef_m(SuitNum,4);
 	checkdef_m(IdenNum,4);
@@ -50,30 +47,29 @@ void checkdef(){
 	checkdef_m(RankNum,13);
 	checkdef_m(PlayerMaxNum,7);
 }
+#undef checkdef_m(x,y)
 
 void init_arr(){
 	FILE *fp;
 	char buf[100]={0};
 
 #define InitSuit_m(x) suit_nametxt[x]=#x 
-
 	InitSuit_m(Spade);
 	InitSuit_m(Heart);
 	InitSuit_m(Diamond);
 	InitSuit_m(Club);
+#undef InitSuit_m(x)
 
 #define checkfopen_m(x) do{\
 	fp=fopen("data/"#x".txt","r");\
 	if(!fp){printf("data/"#x".txt doesn't exist!\n");exit(0);}\
 }while(0)
-
 #define core_fscanf_m(x,y) do{\
 	fscanf(fp,"%[^:]:",buf);\
 	if(strcmp(#x,buf)){printf(#x" doesn't match in data/"#y".txt!(%s)\n",buf);exit(0);}\
 	fscanf(fp,"%m[^\n]\n%m[^:]:\n",&y##_nametxt[x],&y##_helptxt[x]);\
 	y##_helptxt[x][strlen(y##_helptxt[x])-1]=0;\
 }while(0)
-
 #define rcore_fscanf_m(x,y) do{\
 	fscanf(fp,"%[^:]:",buf);\
 	if(strcmp(#x,buf)){printf(#x" doesn't match in data/"#y".txt!(%s)\n",buf);exit(0);}\
@@ -83,16 +79,15 @@ void init_arr(){
 }while(0)
 
 #define iden_fscanf_m(x) core_fscanf_m(x,iden)
-#define role_fscanf_m(x) rcore_fscanf_m(x,role)
-#define type_fscanf_m(x) core_fscanf_m(x,type)
-
 	checkfopen_m(iden);
 	iden_fscanf_m(Sheriff);
 	iden_fscanf_m(Deputy_Sheriff);
 	iden_fscanf_m(Outlaw);
 	iden_fscanf_m(Renegade);
 	fclose(fp);
+#undef iden_fscanf_m(x)
 
+#define role_fscanf_m(x) rcore_fscanf_m(x,role)
 	checkfopen_m(role);
 	role_fscanf_m(Bart_Cassidy);
 	role_fscanf_m(Black_Jack);
@@ -111,7 +106,9 @@ void init_arr(){
 	role_fscanf_m(Vulture_Sam);
 	role_fscanf_m(Willy_the_Kid);
 	fclose(fp);
+#undef role_fscanf_m(x)
 
+#define type_fscanf_m(x) core_fscanf_m(x,type)
 	checkfopen_m(type);
 	type_fscanf_m(Bang);
 	type_fscanf_m(Missed);
@@ -137,9 +134,14 @@ void init_arr(){
 	type_fscanf_m(Rev_Carabine);
 	type_fscanf_m(Winchedster);
 	fclose(fp);
+#undef type_fscanf_m(x)
+
+#undef rcore_fscanf_m(x,y)
+#undef core_fscanf_m(x,y)
+#undef checkfopen_m(x)
+
 
 #define InitRank_m(x) rank_nametxt[x]=#x 
-
 	InitRank_m(0);
 	InitRank_m(A);
 	InitRank_m(2);
@@ -155,13 +157,14 @@ void init_arr(){
 	InitRank_m(Q);
 	InitRank_m(K);
 }
+#undef InitRank_m(x) 
 
 int64_t add_card(eType type,eSuit suit,eRank rank){
 	static int64_t num=0;
 	if(num<CardNum){
-		stock_pile[num].type=type;
-		stock_pile[num].suit=suit;
-		stock_pile[num].rank=rank;
+		stock.card[num].type=type;
+		stock.card[num].suit=suit;
+		stock.card[num].rank=rank;
 	}
 	num++;
 	return num;
@@ -241,7 +244,7 @@ void init_card(){
 }
 
 void init_player(){
-	shuffling(stock_pile,StockNum);
+	shuffling();
 	eIden player_iden_arr[PlayerMaxNum]={
 		Sheriff,
 		Outlaw,
@@ -254,13 +257,13 @@ void init_player(){
 	for(int i=0;i<PlayerMaxNum;i++)player[i].iden=player_iden_arr[i];
 	for(int i=0;i<100;i++){
 		int64_t x,y;
-		x=rand()%PlayerTotalNum;
-		while((y=rand()%PlayerTotalNum)==x)1;
+		x=rand()%PlayerNum;
+		while((y=rand()%PlayerNum)==x)1;
 		eIden tmp=player[x].iden;
 		player[x].iden=player[y].iden;
 		player[y].iden=tmp;
 	}
-	for(int i=0;i<PlayerTotalNum;i++){
+	for(int i=0;i<PlayerNum;i++){
 		int64_t check=0;
 		while(!check){
 			check=1;

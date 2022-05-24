@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<time.h>
 
-void shuffling(sPile *pile,int64_t card_num){
+void shuffling(){
 	srand(time(0));
 	for(int i=0;i<card_num;i++){
 		int64_t x,y;

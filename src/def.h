@@ -9,7 +9,6 @@ typedef enum _eSuit{
 	Club,
 	SuitNum//4
 }eSuit;
-
 extern char *suit_nametxt[SuitNum];
 
 typedef enum _eIden{
@@ -19,7 +18,6 @@ typedef enum _eIden{
 	Renegade,
 	IdenNum//4
 }eIden;
-
 extern char *iden_nametxt[IdenNum];
 extern char *iden_helptxt[IdenNum];
 
@@ -42,7 +40,6 @@ typedef enum _eRole{
 	Willy_the_Kid,
 	RoleNum//16
 }eRole;
-
 extern int64_t role_blood[RoleNum];
 extern char *role_nametxt[RoleNum];
 extern char *role_helptxt[RoleNum];
@@ -74,7 +71,6 @@ typedef enum _eType{
 	Winchedster,//blue card end//
 	TypeNum//23
 }eType;
-
 extern char *type_nametxt[TypeNum];
 extern char *type_helptxt[TypeNum];
 
@@ -84,37 +80,30 @@ typedef enum _eRank{
 	Q,
 	K
 }eRank;
+#define RankNum 13
+extern char *rank_nametxt[RankNum+1];
 
-typedef struct _sPile{
+typedef struct _sCard{
 	eType type;
 	eSuit suit;
 	eRank rank;
-}sPile;
-
-#define RankNum 13
-
-extern char *rank_nametxt[RankNum+1];
-
+}sCard;
 #define CardNum 80
-
-extern int64_t StockNum;
-extern int64_t DiscardNum;
-
-extern sPile stock_pile[CardNum];
-extern sPile discard_pile[CardNum];
+typedef struct _sPile{
+	int64_t num;
+	sCard card[CardNum];
+}sPile;
+extern sPile stock;
+extern sPile discard;
 
 typedef struct _sPlayer{
 	eIden iden;
 	eRole role;
 	int64_t blood;
 	int64_t alive;
-	int64_t handnum;
-	int64_t effectnum;
-	sPile hand[CardNum];
-	sPile effect[CardNum];
+	sPile hand;
+	sPile effect;
 }sPlayer;
-
 #define PlayerMaxNum 7
-
-extern int64_t PlayerTotalNum;
+extern int64_t PlayerNum;
 extern sPlayer player[PlayerMaxNum];
