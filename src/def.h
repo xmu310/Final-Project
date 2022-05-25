@@ -102,8 +102,11 @@ typedef struct _sPlayer{
 	int64_t blood;
 	int64_t alive;
 	sPile hand;
-	sPile effect;
+	sPile equip;
+	int64_t state;
 }sPlayer;
 #define PlayerMaxNum 7
 extern int64_t PlayerNum;
+extern int64_t PlayerNow;
+extern int64_t PlayerHuman;
 extern sPlayer player[PlayerMaxNum];

@@ -17,6 +17,8 @@ sPile stock;
 sPile discard;
 
 int64_t PlayerNum;
+int64_t PlayerNow;
+int64_t PlayerHuman;
 sPlayer player[PlayerMaxNum];
 
 void checkdef();
@@ -27,10 +29,7 @@ void init_player();
 int64_t set_game(int64_t player_num){
 	checkdef();
 	if(player_num<4||player_num>7)return 0;
-	srand(time(0));
 	PlayerNum=player_num;
-	stock.num=CardNum;
-	discard.num=0;
 	init_arr();
 	init_card();
 	init_player();
@@ -47,7 +46,7 @@ void checkdef(){
 	checkdef_m(RankNum,13);
 	checkdef_m(PlayerMaxNum,7);
 }
-#undef checkdef_m(x,y)
+#undef checkdef_m
 
 void init_arr(){
 	FILE *fp;
@@ -58,7 +57,7 @@ void init_arr(){
 	InitSuit_m(Heart);
 	InitSuit_m(Diamond);
 	InitSuit_m(Club);
-#undef InitSuit_m(x)
+#undef InitSuit_m
 
 #define checkfopen_m(x) do{\
 	fp=fopen("data/"#x".txt","r");\
@@ -85,7 +84,7 @@ void init_arr(){
 	iden_fscanf_m(Outlaw);
 	iden_fscanf_m(Renegade);
 	fclose(fp);
-#undef iden_fscanf_m(x)
+#undef iden_fscanf_m
 
 #define role_fscanf_m(x) rcore_fscanf_m(x,role)
 	checkfopen_m(role);
@@ -106,7 +105,7 @@ void init_arr(){
 	role_fscanf_m(Vulture_Sam);
 	role_fscanf_m(Willy_the_Kid);
 	fclose(fp);
-#undef role_fscanf_m(x)
+#undef role_fscanf_m
 
 #define type_fscanf_m(x) core_fscanf_m(x,type)
 	checkfopen_m(type);
@@ -134,11 +133,11 @@ void init_arr(){
 	type_fscanf_m(Rev_Carabine);
 	type_fscanf_m(Winchedster);
 	fclose(fp);
-#undef type_fscanf_m(x)
+#undef type_fscanf_m
 
-#undef rcore_fscanf_m(x,y)
-#undef core_fscanf_m(x,y)
-#undef checkfopen_m(x)
+#undef rcore_fscanf_m
+#undef core_fscanf_m
+#undef checkfopen_m
 
 
 #define InitRank_m(x) rank_nametxt[x]=#x 
@@ -157,20 +156,20 @@ void init_arr(){
 	InitRank_m(Q);
 	InitRank_m(K);
 }
-#undef InitRank_m(x) 
+#undef InitRank_m 
 
 int64_t add_card(eType type,eSuit suit,eRank rank){
-	static int64_t num=0;
-	if(num<CardNum){
-		stock.card[num].type=type;
-		stock.card[num].suit=suit;
-		stock.card[num].rank=rank;
-	}
-	num++;
-	return num;
+	if(stock.num>=CardNum)return 0;
+	stock.card[stock.num].type=type;
+	stock.card[stock.num].suit=suit;
+	stock.card[stock.num].rank=rank;
+	stock.num++;
+	return 1;
 }
 
 void init_card(){
+	stock.num=0;
+	discard.num=0;
 	add_card(Bang,Spade,A);
 	add_card(Bang,Heart,Q);
 	add_card(Bang,Heart,K);
@@ -239,12 +238,14 @@ void init_card(){
 
 	add_card(Winchedster,Spade,8);
 
-	int64_t total=add_card(0,0,0)-1;
-	if(total!=CardNum){printf("added card (%ld) != CardNum (%d)\n",total,CardNum);exit(0);}
+	if(stock.num!=80){printf("added card (%ld) != CardNum (%d)\n",stock.num,CardNum);exit(0);}
 }
 
 void init_player(){
-	shuffling();
+	srand(time(0));
+	PlayerNow=0;
+	PlayerHuman=rand()%PlayerNum;
+	shuffling(&stock);
 	eIden player_iden_arr[PlayerMaxNum]={
 		Sheriff,
 		Outlaw,
@@ -273,7 +274,8 @@ void init_player(){
 		player[i].blood=role_blood[player[i].role];
 		if(player[i].iden==Sheriff)player[i].blood++;
 		player[i].alive=1;
-		player[i].handnum=player[i].blood;
-		player[i].effectnum=0;
+		player[i].hand.num=0;
+		player[i].equip.num=0;
+		for(int j=0;j<player[i].blood;j++)get_card(i);
 	}
 }
