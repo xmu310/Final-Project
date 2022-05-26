@@ -1,43 +1,38 @@
 #include<stdio.h>
 #include<stdint.h>
+#include<stdlib.h>
+#include<string.h>
+#include<unistd.h>
 #include"src/def.h"
 #include"src/func.h"
 int main(){
-	int num;
-	printf("Please enter the player number:");
-	scanf("%d",&num);
-	if(!set_game(num)){
-		printf("Error!\n");
-		return 0;
+	int32_t num;
+	while(1){
+		system("clear");
+		printf("Please enter the player number(4-7, Exit:0): ");
+		if(!num_scanf(&num)){
+			printf("Not integer!\n");
+		}else if(!num){
+			return 0;
+		}else if(num<4||num>7){
+			printf("number should be in 4 to 7\n");
+		}else break;
+		sleep(1);
 	}
-	printf("PlayerNum:%ld\n",PlayerNum);
-	printf("PlayerNow:%ld\n",PlayerNow);
-	printf("PlayerHuman:%ld\n",PlayerHuman);
-	for(int i=0;i<PlayerNum;i++){
-		printf("-----\n");
-		printf("%s\n",iden_nametxt[player[i].iden]);
-		printf("%s\n",role_nametxt[player[i].role]);
-		printf("role_blood:%ld\n",role_blood[player[i].role]);
-		printf("blood:%ld\n",player[i].blood);
-		printf("alive:%ld\n",player[i].alive);
-		printf("hand_num:%ld\n",player[i].hand.num);
-		for(int j=0;j<player[i].hand.num;j++){
-			printf("\n%s\n",type_nametxt[player[i].hand.card[j].type]);
-			printf("%d:(%s,",j+1,suit_nametxt[player[i].hand.card[j].suit]);
-			printf("%s)\n",rank_nametxt[player[i].hand.card[j].rank]);
+	if(!set_game(num)){printf("Error!\n");return 0;}
+	while(1){
+		system("clear");
+		print_all_player();
+		printf("Now: Player%d\n",PlayerNow+1);
+		sleep(1);
+		if(player[PlayerNow].role==Black_Jack){
+		}else if(player[PlayerNow].role==Jesse_Jones){
+		}else if(player[PlayerNow].role==Kit_Carlson){
+		}else if(player[PlayerNow].role==Pedro_Ramirez){
+		}else{
+			//for(int i=0;i<2;i++)printf
 		}
-		printf("equit_num:%ld\n",player[i].equip.num);
-		for(int j=0;j<player[i].equip.num;j++){
-			printf("\n%s\n",type_nametxt[player[i].equip.card[j].type]);
-			printf("%d:(%s,",j+1,suit_nametxt[player[i].equip.card[j].suit]);
-			printf("%s)\n",rank_nametxt[player[i].equip.card[j].rank]);
-		}
-	}
-	printf("stock_num:%ld\n",stock.num);
-	for(int i=0;i<stock.num;i++){
-			printf("\n%s\n",type_nametxt[stock.card[i].type]);
-			printf("%d:(%s,",i+1,suit_nametxt[stock.card[i].suit]);
-			printf("%s)\n",rank_nametxt[stock.card[i].rank]);
+		Round++;
 	}
 	return 0;
 }

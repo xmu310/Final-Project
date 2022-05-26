@@ -2,14 +2,15 @@
 #include<stdlib.h>
 #include<time.h>
 
-void shuffling(sPile *pile){
+void shuffling(){
 	srand(time(0));
-	for(int i=0;i<pile->num;i++){
-		int64_t x,y;
-		x=rand()%pile->num;
-		while((y=rand()%pile->num)==x)1;
-		sCard tmp=pile->card[x];
-		pile->card[x]=pile->card[y];
-		pile->card[y]=tmp;
+	combine_pile(&stock,&discard);
+	for(int i=0;i<stock.num;i++){
+		int32_t x,y;
+		x=rand()%stock.num;
+		while((y=rand()%stock.num)==x)1;
+		sCard tmp=stock.card[x];
+		stock.card[x]=stock.card[y];
+		stock.card[y]=tmp;
 	}
 }

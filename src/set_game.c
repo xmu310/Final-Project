@@ -6,7 +6,7 @@
 char *suit_nametxt[SuitNum];
 char *iden_nametxt[IdenNum];
 char *iden_helptxt[IdenNum];
-int64_t role_blood[RoleNum];
+int32_t role_blood[RoleNum];
 char *role_nametxt[RoleNum];
 char *role_helptxt[RoleNum];
 char *type_nametxt[TypeNum];
@@ -16,17 +16,18 @@ char *rank_nametxt[RankNum+1];
 sPile stock;
 sPile discard;
 
-int64_t PlayerNum;
-int64_t PlayerNow;
-int64_t PlayerHuman;
+int32_t PlayerNum;
+int32_t PlayerNow;
+int32_t PlayerHuman;
 sPlayer player[PlayerMaxNum];
+int32_t Round;
 
 void checkdef();
 void init_arr();
 void init_card();
 void init_player();
 
-int64_t set_game(int64_t player_num){
+int32_t set_game(int32_t player_num){
 	checkdef();
 	if(player_num<4||player_num>7)return 0;
 	PlayerNum=player_num;
@@ -72,7 +73,7 @@ void init_arr(){
 #define rcore_fscanf_m(x,y) do{\
 	fscanf(fp,"%[^:]:",buf);\
 	if(strcmp(#x,buf)){printf(#x" doesn't match in data/"#y".txt!(%s)\n",buf);exit(0);}\
-	fscanf(fp,"%ld:",&y##_blood[x]);\
+	fscanf(fp,"%d:",&y##_blood[x]);\
 	fscanf(fp,"%m[^\n]\n%m[^:]:\n",&y##_nametxt[x],&y##_helptxt[x]);\
 	y##_helptxt[x][strlen(y##_helptxt[x])-1]=0;\
 }while(0)
@@ -158,7 +159,7 @@ void init_arr(){
 }
 #undef InitRank_m 
 
-int64_t add_card(eType type,eSuit suit,eRank rank){
+int32_t add_card(eType type,eSuit suit,eRank rank){
 	if(stock.num>=CardNum)return 0;
 	stock.card[stock.num].type=type;
 	stock.card[stock.num].suit=suit;
@@ -238,14 +239,14 @@ void init_card(){
 
 	add_card(Winchedster,Spade,8);
 
-	if(stock.num!=80){printf("added card (%ld) != CardNum (%d)\n",stock.num,CardNum);exit(0);}
+	if(stock.num!=80){printf("added card (%d) != CardNum (%d)\n",stock.num,CardNum);exit(0);}
 }
 
 void init_player(){
 	srand(time(0));
 	PlayerNow=0;
 	PlayerHuman=rand()%PlayerNum;
-	shuffling(&stock);
+	shuffling();
 	eIden player_iden_arr[PlayerMaxNum]={
 		Sheriff,
 		Outlaw,
@@ -257,7 +258,7 @@ void init_player(){
 	};
 	for(int i=0;i<PlayerMaxNum;i++)player[i].iden=player_iden_arr[i];
 	for(int i=0;i<100;i++){
-		int64_t x,y;
+		int32_t x,y;
 		x=rand()%PlayerNum;
 		while((y=rand()%PlayerNum)==x)1;
 		eIden tmp=player[x].iden;
@@ -265,17 +266,19 @@ void init_player(){
 		player[y].iden=tmp;
 	}
 	for(int i=0;i<PlayerNum;i++){
-		int64_t check=0;
+		int32_t check=0;
 		while(!check){
 			check=1;
 			player[i].role=rand()%RoleNum;
 			for(int j=0;j<i;j++)if(player[i].role==player[j].role)check=0;
 		}
-		player[i].blood=role_blood[player[i].role];
-		if(player[i].iden==Sheriff)player[i].blood++;
+		player[i].maxblood=role_blood[player[i].role];
+		if(player[i].iden==Sheriff)player[i].maxblood++;
+		player[i].blood=player[i].maxblood;
 		player[i].alive=1;
 		player[i].hand.num=0;
 		player[i].equip.num=0;
-		for(int j=0;j<player[i].blood;j++)get_card(i);
+		for(int j=0;j<player[i].blood;j++)get_last_card(&player[i].hand,&stock);
 	}
+	Round=1;
 }

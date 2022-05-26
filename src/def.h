@@ -40,7 +40,7 @@ typedef enum _eRole{
 	Willy_the_Kid,
 	RoleNum//16
 }eRole;
-extern int64_t role_blood[RoleNum];
+extern int32_t role_blood[RoleNum];
 extern char *role_nametxt[RoleNum];
 extern char *role_helptxt[RoleNum];
 
@@ -90,7 +90,7 @@ typedef struct _sCard{
 }sCard;
 #define CardNum 80
 typedef struct _sPile{
-	int64_t num;
+	int32_t num;
 	sCard card[CardNum];
 }sPile;
 extern sPile stock;
@@ -99,14 +99,16 @@ extern sPile discard;
 typedef struct _sPlayer{
 	eIden iden;
 	eRole role;
-	int64_t blood;
-	int64_t alive;
+	int32_t maxblood;
+	int32_t blood;
+	int32_t alive;
 	sPile hand;
 	sPile equip;
-	int64_t state;
 }sPlayer;
 #define PlayerMaxNum 7
-extern int64_t PlayerNum;
-extern int64_t PlayerNow;
-extern int64_t PlayerHuman;
+extern int32_t PlayerNum;
+extern int32_t PlayerNow;
+extern int32_t PlayerHuman;
 extern sPlayer player[PlayerMaxNum];
+
+extern int32_t Round;
