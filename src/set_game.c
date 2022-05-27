@@ -6,6 +6,10 @@
 char *suit_nametxt[SuitNum];
 char *iden_nametxt[IdenNum];
 char *iden_helptxt[IdenNum];
+int32_t SheriffAlive;
+int32_t DeputySheriffAlive;
+int32_t OutlawAlive;
+int32_t RenegadeAlive;
 int32_t role_blood[RoleNum];
 char *role_nametxt[RoleNum];
 char *role_helptxt[RoleNum];
@@ -246,6 +250,10 @@ void init_card(){
 void init_player(){
 	srand(time(0));
 	PlayerNow=0;
+	SheriffAlive=0;
+	DeputySheriffAlive=0;
+	OutlawAlive=0;
+	RenegadeAlive=0;
 	PlayerHuman=rand()%PlayerNum;
 	PlayerAlive=PlayerNum;
 	shuffling();
@@ -258,7 +266,13 @@ void init_player(){
 		Outlaw,
 		Sheriff
 	};
-	for(int i=0;i<PlayerMaxNum;i++)player[i].iden=player_iden_arr[i];
+	for(int i=0;i<PlayerMaxNum;i++){
+		player[i].iden=player_iden_arr[i];
+		if(player[i].iden==Sheriff)SheriffAlive++;
+		if(player[i].iden==Deputy_Sheriff)DeputySheriffAlive++;
+		if(player[i].iden==Outlaw)OutlawAlive++;
+		if(player[i].iden==Renegade)RenegadeAlive++;
+	}
 	for(int i=0;i<100;i++){
 		int32_t x,y;
 		x=rand()%PlayerNum;

@@ -2,8 +2,8 @@
 
 int32_t distance(int32_t player1_index,int32_t player2_index){
 	int32_t re=0;
-	if(player1_index<0||player1_index>PlayerNum)return 0;
-	if(player2_index<0||player2_index>PlayerNum)return 0;
+	if(!is_player_exist(player1_index))return 0;
+	if(!is_player_exist(player2_index))return 0;
 	if(!player[player1_index].alive)return 0;
 	if(!player[player2_index].alive)return 0;
 	if(player1_index==player2_index)return 0;

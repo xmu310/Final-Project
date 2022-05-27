@@ -39,5 +39,6 @@ int main(){
 		}
 		next_round();
 	}
+	print_who_win();
 	return 0;
 }

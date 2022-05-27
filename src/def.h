@@ -18,6 +18,10 @@ typedef enum _eIden{
 	Renegade,
 	IdenNum//4
 }eIden;
+extern int32_t SheriffAlive;
+extern int32_t DeputySheriffAlive;
+extern int32_t OutlawAlive;
+extern int32_t RenegadeAlive;
 extern char *iden_nametxt[IdenNum];
 extern char *iden_helptxt[IdenNum];
 
