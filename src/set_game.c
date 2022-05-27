@@ -19,6 +19,7 @@ sPile discard;
 int32_t PlayerNum;
 int32_t PlayerNow;
 int32_t PlayerHuman;
+int32_t PlayerAlive;
 sPlayer player[PlayerMaxNum];
 int32_t Round;
 
@@ -246,6 +247,7 @@ void init_player(){
 	srand(time(0));
 	PlayerNow=0;
 	PlayerHuman=rand()%PlayerNum;
+	PlayerAlive=PlayerNum;
 	shuffling();
 	eIden player_iden_arr[PlayerMaxNum]={
 		Sheriff,

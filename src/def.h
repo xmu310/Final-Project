@@ -109,6 +109,7 @@ typedef struct _sPlayer{
 extern int32_t PlayerNum;
 extern int32_t PlayerNow;
 extern int32_t PlayerHuman;
+extern int32_t PlayerAlive;
 extern sPlayer player[PlayerMaxNum];
 
 extern int32_t Round;

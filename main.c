@@ -22,9 +22,14 @@ int main(){
 	if(!set_game(num)){printf("Error!\n");return 0;}
 	while(1){
 		system("clear");
-		print_all_player();
+		print_all_status();
 		printf("Now: Player%d\n",PlayerNow+1);
 		sleep(1);
+		if(have_card(player[PlayerNow].equip,Dynamite)){
+			printf("Dynamite determine:");
+		}
+		if(have_card(player[PlayerNow].equip,Jail)){
+		}
 		if(player[PlayerNow].role==Black_Jack){
 		}else if(player[PlayerNow].role==Jesse_Jones){
 		}else if(player[PlayerNow].role==Kit_Carlson){
@@ -32,7 +37,7 @@ int main(){
 		}else{
 			//for(int i=0;i<2;i++)printf
 		}
-		Round++;
+		next_round();
 	}
 	return 0;
 }
