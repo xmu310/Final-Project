@@ -101,6 +101,7 @@ int main(){
 			}else{
 				if(rand()%2){
 					num=-1;
+					if(player[PlayerNow].hand.num>player[PlayerNow].blood)continue;
 				}else{
 					num=rand()%player[PlayerNow].hand.num;
 				}
@@ -109,6 +110,7 @@ int main(){
 				printf("Player%d choose skip!\n",PlayerNow+1);
 				if(player[PlayerNow].hand.num>player[PlayerNow].blood){
 					printf("Because your hand card's number is bigger than your blood, you are not allowed to skip!\n");
+					continue;
 				}else break;
 			}
 			printf("Player%d choose %d. %s\n",PlayerNow+1,num+1,type_nametxt[player[PlayerNow].hand.card[num].type]);

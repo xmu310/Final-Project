@@ -25,4 +25,5 @@ void print_all_status(){
 	if(Stage==1)printf("Stage: draw cards\n");
 	if(Stage==2)printf("Stage: use cards\n");
 	if(Stage==3)printf("Stage: discard cards\n");
+	printf(">>>>>>>>>>>>>>>>>>\n");
 }
