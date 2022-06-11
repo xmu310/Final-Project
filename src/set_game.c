@@ -1,7 +1,6 @@
 #include"func.h"
 #include<stdlib.h>
 #include<string.h>
-#include<time.h>
 
 char *suit_nametxt[SuitNum];
 char *iden_nametxt[IdenNum];
@@ -26,6 +25,7 @@ int32_t PlayerHuman;
 int32_t PlayerAlive;
 sPlayer player[PlayerMaxNum];
 int32_t Round;
+int32_t Stage;
 
 void checkdef();
 void init_arr();
@@ -248,7 +248,6 @@ void init_card(){
 }
 
 void init_player(){
-	srand(time(0));
 	PlayerNow=0;
 	SheriffAlive=0;
 	DeputySheriffAlive=0;

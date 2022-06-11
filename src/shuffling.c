@@ -1,9 +1,7 @@
 #include"func.h"
 #include<stdlib.h>
-#include<time.h>
 
 void shuffling(){
-	srand(time(0));
 	combine_pile(&stock,&discard);
 	for(int i=0;i<stock.num;i++){
 		int32_t x,y;

@@ -6,4 +6,4 @@ all: $(OBJ)
 obj/%.o: src/%.c
 	gcc -c $< -o $@
 clean:
-	rm -rf all.h project obj/*.o
+	rm -rf project obj/*.o
