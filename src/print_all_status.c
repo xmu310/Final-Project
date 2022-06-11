@@ -3,7 +3,8 @@
 #include"unistd.h"
 
 void print_all_status(){
-	sleep(1);
+	fflush(stdout);
+	sleep(2);
 	system("clear");
 	printf("Round: %d\n",Round);
 	printf(">>>>>>>>>>>>>>>>>>\n");

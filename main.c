@@ -78,7 +78,7 @@ int main(){
 				printf("Player%d choose skip!\n",PlayerNow+1);
 				break;
 			}
-			printf("Player%d choose %d. %s\n",PlayerNow+1,num+1,type_nametxt[player[PlayerNow].hand.card[num].type]);
+			printf("Player%d uses %d. %s\n",PlayerNow+1,num+1,type_nametxt[player[PlayerNow].hand.card[num].type]);
 			use_card(num);
 		}
 
@@ -113,7 +113,6 @@ int main(){
 					continue;
 				}else break;
 			}
-			printf("Player%d choose %d. %s\n",PlayerNow+1,num+1,type_nametxt[player[PlayerNow].hand.card[num].type]);
 			get_card(&discard,&player[PlayerNow].hand,num);
 			printf("Player%d discarded a card to discard pile.\n",PlayerNow+1);
 			if(player[PlayerNow].role==Sid_Ketchum){
