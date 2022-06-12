@@ -40,9 +40,9 @@ int main(){
 			Pedro_Ramirez_draw();
 		}else{
 			get_stock(PlayerNow);
-			printf("Player%d got a card from stock pile.\n",PlayerNow+1);
+			printf("Player%d gets a card from stock pile.\n",PlayerNow+1);
 			get_stock(PlayerNow);
-			printf("Player%d got a card from stock pile.\n",PlayerNow+1);
+			printf("Player%d gets a card from stock pile.\n",PlayerNow+1);
 		}
 
 		Stage=2;//use cards
@@ -51,7 +51,7 @@ int main(){
 			print_all_status();
 			ask_Suzy_Lafayette(PlayerNow);
 			if(player[PlayerNow].hand.num<=0){
-				printf("Player%d have no hand card!\n",PlayerNow+1);
+				printf("Player%d has no hand card!\n",PlayerNow+1);
 				break;
 			}
 			ask_Sid_Ketchum(PlayerNow);
@@ -75,7 +75,7 @@ int main(){
 				}
 			}
 			if(num==-1){
-				printf("Player%d choose skip!\n",PlayerNow+1);
+				printf("Player%d chooses skip!\n",PlayerNow+1);
 				break;
 			}
 			printf("Player%d uses %d. %s\n",PlayerNow+1,num+1,type_nametxt[player[PlayerNow].hand.card[num].type]);
@@ -88,7 +88,7 @@ int main(){
 			print_all_status();
 			ask_Suzy_Lafayette(PlayerNow);
 			if(player[PlayerNow].hand.num<=0){
-				printf("Player%d have no hand card!\n",PlayerNow+1);
+				printf("Player%d has no hand card!\n",PlayerNow+1);
 				break;
 			}
 			if(PlayerNow==PlayerHuman){
@@ -107,14 +107,14 @@ int main(){
 				}
 			}
 			if(num==-1){
-				printf("Player%d choose skip!\n",PlayerNow+1);
+				printf("Player%d chooses skip!\n",PlayerNow+1);
 				if(player[PlayerNow].hand.num>player[PlayerNow].blood){
 					printf("Because your hand card's number is bigger than your blood, you are not allowed to skip!\n");
 					continue;
 				}else break;
 			}
 			get_card(&discard,&player[PlayerNow].hand,num);
-			printf("Player%d discarded a card to discard pile.\n",PlayerNow+1);
+			printf("Player%d discards a card to discard pile.\n",PlayerNow+1);
 			if(player[PlayerNow].role==Sid_Ketchum){
 				discard_num++;
 				if(discard_num>=2){

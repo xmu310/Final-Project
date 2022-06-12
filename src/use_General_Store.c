@@ -8,7 +8,7 @@ void use_General_Store(int32_t card_index){
 	for(int i=0;i<total;i++){
 		get_stock(PlayerNow);
 		get_last_card(&tmp,&player[PlayerNow].hand);
-		printf("Player%d got a card from stock pile.\n",PlayerNow+1);
+		printf("Player%d gets a card from stock pile.\n",PlayerNow+1);
 	}
 	while(1){
 		if(player_index==PlayerHuman){
@@ -29,7 +29,7 @@ void use_General_Store(int32_t card_index){
 		}else{
 			num=rand()%total;
 		}
-		printf("Player%d got a card.\n",player_index+1);
+		printf("Player%d gets a card.\n",player_index+1);
 		get_card(&player[player_index].hand,&tmp,num);
 		total--;
 		if(total<=0)break;
