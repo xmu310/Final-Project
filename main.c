@@ -57,7 +57,6 @@ int main(){
 		}
 
 		Stage=2;//use cards
-		discard_num=0;
 		while(1){
 			print_all_status();
 			ask_Suzy_Lafayette(PlayerNow);
@@ -68,21 +67,27 @@ int main(){
 			ask_Sid_Ketchum(PlayerNow);
 			if(PlayerNow==PlayerHuman){
 				printf("Which hand card do you want to use (enter card index, -1 for skip): ");
-				if(!num_scanf(&num)||num<1&&num!=-1||num>player[PlayerNow].hand.num){
-					printf("Error\n");
-					continue;
-				}
-				if(num!=-1)num--;
-				if(player[PlayerNow].hand.card[num].type==Missed){
-					printf("You can't not choose Missed!\n");
-					continue;
+				while(1){
+					if(!num_scanf(&num)||num<1&&num!=-1||num>player[PlayerNow].hand.num){
+						printf("Error\n");
+						continue;
+					}
+					if(num==-1)break;
+					num--;
+					if(player[PlayerNow].hand.card[num].type==Missed){
+						printf("You can't not choose Missed!\n");
+						continue;
+					}else break;
 				}
 			}else{
-				if(rand()%2){
-					num=-1;
-				}else{
-					num=rand()%player[PlayerNow].hand.num;
-					if(player[PlayerNow].hand.card[num].type==Missed)continue;
+				while(1){
+					if(!(rand()%3)){
+						num=-1;
+						break;
+					}else{
+						num=rand()%player[PlayerNow].hand.num;
+						if(player[PlayerNow].hand.card[num].type==Missed)continue;else break;
+					}
 				}
 			}
 			if(num==-1){
@@ -104,25 +109,34 @@ int main(){
 			}
 			if(PlayerNow==PlayerHuman){
 				printf("Which hand card do you want to discard (enter card index, -1 for skip): ");
-				if(!num_scanf(&num)||num<1&&num!=-1||num>player[PlayerNow].hand.num){
-					printf("Error\n");
-					continue;
+				while(1){
+					if(!num_scanf(&num)||num<1&&num!=-1||num>player[PlayerNow].hand.num){
+						printf("Error\n");
+						continue;
+					}
+					if(num==-1){
+						if(player[PlayerNow].hand.num>player[PlayerNow].blood){
+							printf("Because your hand card's number is bigger than your blood, you are not allowed to skip!\n");
+							continue;
+						}else break;
+					}
+					num--;
+					break;
 				}
-				if(num!=-1)num--;
 			}else{
-				if(rand()%2){
-					num=-1;
-					if(player[PlayerNow].hand.num>player[PlayerNow].blood)continue;
-				}else{
-					num=rand()%player[PlayerNow].hand.num;
+				while(1){
+					if(rand()%2){
+						num=-1;
+						if(player[PlayerNow].hand.num>player[PlayerNow].blood)continue;else break;
+					}else{
+						num=rand()%player[PlayerNow].hand.num;
+						break;
+					}
 				}
 			}
 			if(num==-1){
 				printf("Player%d chooses skip!\n",PlayerNow+1);
-				if(player[PlayerNow].hand.num>player[PlayerNow].blood){
-					printf("Because your hand card's number is bigger than your blood, you are not allowed to skip!\n");
-					continue;
-				}else break;
+				break;
 			}
 			get_card(&discard,&player[PlayerNow].hand,num);
 			printf("Player%d discards a card to discard pile.\n",PlayerNow+1);
