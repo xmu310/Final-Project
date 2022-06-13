@@ -32,7 +32,7 @@ void use_Panic(int32_t card_index){
 				continue;
 			}
 			if(player[player_index].hand.num+player[player_index].equip.num<=0){
-				printf("This player has no card.");
+				printf("This player has no card.\n");
 				printf("Please enter again!\n\n");
 				continue;
 			}else break;
@@ -45,7 +45,7 @@ void use_Panic(int32_t card_index){
 				continue;
 			}
 			if(type==0&&player[player_index].hand.num<=0||type==1&&player[player_index].equip.num<=0){
-				printf("This player has no card of this kind.");
+				printf("This player has no card of this kind.\n");
 				printf("Please enter again!\n\n");
 				continue;
 			}else break;
@@ -83,4 +83,5 @@ void use_Panic(int32_t card_index){
 	if(type==0)get_card(&player[PlayerNow].hand,&player[player_index].hand,num);
 	if(type==1)get_card(&player[PlayerNow].hand,&player[player_index].equip,num);
 	printf("Player%d get a card from the Player%d.\n",PlayerNow+1,player_index+1);
+	ask_Suzy_Lafayette(player_index);
 }
