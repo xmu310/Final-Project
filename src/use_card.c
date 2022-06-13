@@ -1,6 +1,10 @@
 #include"func.h"
 
 void use_card(int32_t card_index){
+	if(player[PlayerNow].hand.card[card_index].type==Missed&&player[PlayerNow].role==Calamity_Janet){
+		use_Bang(card_index);
+		return;
+	}
 #define buildif(x) if(player[PlayerNow].hand.card[card_index].type==x)use_##x(card_index)
 	buildif(Bang);
 	buildif(Beer);

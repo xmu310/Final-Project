@@ -5,5 +5,6 @@ void next_round(){
 		PlayerNow=(PlayerNow+1)%PlayerNum;
 		if(player[PlayerNow].alive)break;
 	}
+	BangNum=0;
 	Round++;
 }

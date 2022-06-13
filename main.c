@@ -75,6 +75,7 @@ int main(){
 					if(num==-1)break;
 					num--;
 					if(player[PlayerNow].hand.card[num].type==Missed){
+						if(player[PlayerNow].role==Calamity_Janet)break;
 						printf("You can't not choose Missed!\n");
 						continue;
 					}else break;
@@ -86,7 +87,10 @@ int main(){
 						break;
 					}else{
 						num=rand()%player[PlayerNow].hand.num;
-						if(player[PlayerNow].hand.card[num].type==Missed)continue;else break;
+						if(player[PlayerNow].hand.card[num].type==Missed){
+							if(player[PlayerNow].role==Calamity_Janet)break;
+							continue;
+						}else break;
 					}
 				}
 			}
@@ -95,7 +99,15 @@ int main(){
 				break;
 			}
 			printf("Player%d uses %d. %s\n",PlayerNow+1,num+1,type_nametxt[player[PlayerNow].hand.card[num].type]);
+			if(player[PlayerNow].hand.card[num].type==Missed&&player[PlayerNow].role==Calamity_Janet){
+					printf("Because you are Calamity Janet, your Missed changed to Bang.\n");
+			}
 			use_card(num);
+			if(!player[PlayerNow].alive)break;
+		}
+		if(!player[PlayerNow].alive){
+			next_round();
+			continue;
 		}
 
 		Stage=3;//discard cards

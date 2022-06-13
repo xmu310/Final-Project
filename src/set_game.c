@@ -26,6 +26,7 @@ int32_t PlayerAlive;
 sPlayer player[PlayerMaxNum];
 int32_t Round;
 int32_t Stage;
+int32_t BangNum;
 
 void checkdef();
 void init_arr();
@@ -255,6 +256,7 @@ void init_player(){
 	RenegadeAlive=0;
 	PlayerHuman=rand()%PlayerNum;
 	PlayerAlive=PlayerNum;
+	BangNum=0;
 	shuffling();
 	eIden player_iden_arr[PlayerMaxNum]={
 		Sheriff,
