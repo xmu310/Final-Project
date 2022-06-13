@@ -26,6 +26,22 @@ int32_t det_Jail(){
         get_last_card(&discard, &temp); // discard determine card
         return 2;
     }else{ // still in jail, return 1
+        
+        printf("  _________________________\n");
+        printf("     ||   ||     ||   ||\n");
+        printf("     ||   ||, , ,||   ||\n");
+        printf("     ||  (||/|/(\\||/  ||\n");
+        printf("     ||  ||| _'_`|||  ||\n");
+        printf("     ||   || o o ||   ||\n");
+        printf("     ||  (||  - `||)  ||\n");
+        printf("     ||   ||  =  ||   ||\n");
+        printf("     ||   ||\\___/||   ||\n");
+        printf("     ||___||) , (||___||\n");
+        printf("    /||---||-\\_/-||---||\\\n");
+        printf("   / ||--_||_____||_--|| \\\n");
+        printf("  (_(||)-|         |-(||)_)\n");
+        printf("  _________________________\n");
+
         printf("player%d is still in the Jail :(\n", PlayerNow);
         get_last_card(&discard, &temp); // discard determine card
         return 1;

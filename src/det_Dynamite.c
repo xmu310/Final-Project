@@ -1,6 +1,11 @@
 #include"func.h"
 
 void det_Dynamite(){
+    printf("        ,--.!,\n");
+	printf("     __/   -*-\n");
+	printf("   ,d08b.  '|`\n");
+	printf("   0088MM\n");
+	printf("   `9MMP' \n");
     printf("Dynamite determine:");
     sPile temp; // determine card
     temp.num=0;
@@ -14,6 +19,18 @@ void det_Dynamite(){
             type_nametxt[temp.card[0].type]);
     if(temp.card[0].suit==Spade && (temp.card[0].rank>=2 && temp.card[0].rank<=9)){
         // explode <- spade 2~9
+        printf("     _.-^^---....,,--       \n");
+        printf(" _--                  --_  \n");
+        printf("<                        >)\n");
+        printf("|                         | \n");
+        printf(" \\._                   _./  \n");
+        printf("    ```--. . , ; .--'''       \n");
+        printf("          | |   |         \n");
+        printf("       .-=||  | |=-.   \n");
+        printf("       `-=#$#&#$#=-'   \n");
+        printf("          | ;  :|     \n");
+        printf(" _____.,-##&$@##&#~,._____\n\n");
+
         printf("Spade 2-9: Dynamite explodes.\nplayer%d -3 blood\n", PlayerNow+1);
 
         player[PlayerNow].blood -= 3; // -3 blood
