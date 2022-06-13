@@ -39,13 +39,15 @@ sCard det(int32_t player_index){
 		num--;
 	}else{
 		num=rand()%2;
+		tmp=player[player_index].hand.card[player[player_index].hand.num-1-1+num];
+		if(tmp.suit!=Heart)num=!num;
 	}
+	tmp=player[player_index].hand.card[player[player_index].hand.num-1-1+num];
 	printf("Player%d choose %d. (%s,%s) %s\n",player_index+1,num+1,
 			suit_nametxt[tmp.suit],
 			rank_nametxt[tmp.rank],
 			type_nametxt[tmp.type]
 	);
-	tmp=player[player_index].hand.card[player[player_index].hand.num-1-1+num];
 	get_last_card(&discard,&player[player_index].hand);
 	get_last_card(&discard,&player[player_index].hand);
 	return tmp;

@@ -5,7 +5,7 @@ void use_Duel(int32_t card_index){
 	get_card(&discard,&player[PlayerNow].hand,card_index);
 	printf("Which player would you want to choose (enter player index): \n");
 	if(PlayerNow==PlayerHuman){
-		while(num_scanf(&player_index)||!is_player_exist(player_index)||!player[player_index].alive||player_index==PlayerNow){
+		while(!num_scanf(&player_index)||!is_player_exist(player_index)||!player[player_index].alive||player_index==PlayerNow){
 			printf("Error\n");
 		}
 	}else{

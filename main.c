@@ -137,15 +137,9 @@ int main(){
 					break;
 				}
 			}else{
-				while(1){
-					if(rand()%2){
-						num=-1;
-						if(player[PlayerNow].hand.num>player[PlayerNow].blood)continue;else break;
-					}else{
-						num=rand()%player[PlayerNow].hand.num;
-						break;
-					}
-				}
+				if(player[PlayerNow].hand.num>player[PlayerNow].blood){
+					num=rand()%player[PlayerNow].hand.num;
+				}else num=-1;
 			}
 			if(num==-1){
 				printf("Player%d chooses skip!\n",PlayerNow+1);

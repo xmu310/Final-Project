@@ -4,9 +4,10 @@
 
 void print_all_status(){
 	fflush(stdout);
-	printf("\nPress enter to continue\n");
-	scanf("%*[^\n]");
-	scanf("%*c");
+	//printf("\nPress enter to continue\n");
+	//scanf("%*[^\n]");
+	//scanf("%*c");
+	sleep(2);
 	system("clear");
 	printf("Round: %d\n",Round);
 	printf(">>>>>>>>>>>>>>>>>>\n");
