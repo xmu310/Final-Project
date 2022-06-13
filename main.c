@@ -7,7 +7,7 @@
 #include"src/def.h"
 #include"src/func.h"
 int main(int argc,char* argv[]){
-	int32_t num,discard_num;
+	int32_t num,discard_num,n;
 	char c,cc;
 	SleepNum=1;
 	while((c=getopt(argc,argv,"s:"))!=-1){
@@ -65,6 +65,7 @@ int main(int argc,char* argv[]){
 		}
 
 		Stage=2;//use cards
+		n=0;
 		while(1){
 			print_all_status();
 			ask_Suzy_Lafayette(PlayerNow);
@@ -90,15 +91,15 @@ int main(int argc,char* argv[]){
 				}
 			}else{
 				while(1){
-					if(!(rand()%3)){
-						num=-1;
-						break;
-					}else{
+					if(player[PlayerNow].hand.num>player[PlayerNow].blood&&n<7){
 						num=rand()%player[PlayerNow].hand.num;
 						if(player[PlayerNow].hand.card[num].type==Missed){
 							if(player[PlayerNow].role==Calamity_Janet)break;
 							continue;
 						}else break;
+					}else{
+						num=-1;
+						break;
 					}
 				}
 			}
@@ -112,6 +113,7 @@ int main(int argc,char* argv[]){
 			}
 			use_card(num);
 			if(!player[PlayerNow].alive||is_game_end())break;
+			n++;
 		}
 		if(is_game_end())break;
 		if(!player[PlayerNow].alive){

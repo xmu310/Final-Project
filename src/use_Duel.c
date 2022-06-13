@@ -1,4 +1,5 @@
 #include"func.h"
+#include<stdlib.h>
 
 void use_Duel(int32_t card_index){
 	int32_t player_index,num,turn=0,who=0;
@@ -10,6 +11,7 @@ void use_Duel(int32_t card_index){
 		}
 	}else{
 		while(1){
+			player_index=rand()%PlayerNum;
 			if(player[player_index].alive&&player_index!=PlayerNow)break;
 		}
 	}
