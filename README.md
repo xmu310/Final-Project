@@ -8,9 +8,9 @@ In this project, you play with virtual players.
   
 Players are separated into 3 factions: Sheriff (and  Deputies), Outlaws, and Renegade.
 * Each faction's goal
-  - Sheriff (and  Deputies): defeat the Outlaws and Renegade
-  - Outlaws: kill the Sheriff
-  - Renegade: become the last player standing
+  - 👮 Sheriff (and  Deputies): defeat the Outlaws and Renegade
+  - 🦹‍♂️ Outlaws: kill the Sheriff
+  - 👤 Renegade: become the last player standing
 
 ## How to Play
  1. download our project
