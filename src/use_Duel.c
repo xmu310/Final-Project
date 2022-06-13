@@ -14,7 +14,7 @@ void use_Duel(int32_t card_index){
 		}
 	}
 	who=player_index;
-	printf("Player%d and player%d starts duel!\n",PlayerNow,player_index);
+	printf("Player%d and player%d starts duel!\n",PlayerNow+1,player_index+1);
 	while(1){
 		if(find_card_index(player[who].hand,Bang,&num)){
 			get_card(&discard,&player[who].hand,num);
