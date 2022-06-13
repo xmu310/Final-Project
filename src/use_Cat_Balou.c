@@ -2,16 +2,16 @@
 #include<stdlib.h>
 
 void use_Cat_Balou(int32_t card_index){
-	get_card(&discard,&player[PlayerNow].hand,card_index);
 	int32_t have_card_player=0,player_index,type,num;
 	for(int i=0;i<PlayerNum;i++){
 		if(i==PlayerNow||!player[i].alive)continue;
 		if(player[i].hand.num+player[i].equip.num>0)have_card_player++;
 	}
 	if(have_card_player==0){
-		printf("Because no other player has card, this card is no effect!\n");
+		printf("Because no other player has card, you can't use this card!\n");
 		return;
 	}
+	get_card(&discard,&player[PlayerNow].hand,card_index);
 	if(PlayerNow==PlayerHuman){
 		printf("Which player's card do you want to choose (enter player index):");
 		while(1){
