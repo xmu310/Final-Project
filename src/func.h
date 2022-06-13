@@ -9,7 +9,7 @@ void next_round();
 void end_game();
 
 void det_Dynamite();
-void det_Jail();
+int32_t det_Jail();
 
 void Black_Jack_draw();
 void Jesse_Jones_draw();
@@ -51,8 +51,9 @@ int32_t player_plus_blood(int32_t player_index);//if player's blood added to max
 int32_t ask_Sid_Ketchum(int32_t player_index);//If this player is Sid Ketchum and blood is not max, ask him/her whether he/she wants to discard two cards to added his blood. If this player is not Sid Ketchum or blood is max, then nothing to do.
 int32_t ask_Suzy_Lafayette(int32_t player_index);//If this player is Suzy Lafayette and have no hand card, ask him/her whether he/she wants to draw a card from stock. If this player is not Suzy Lafayette or still have hand card, then nothing to do.
 int32_t player_dead(int32_t player_index);
+int32_t find_card_index(sPile pile,eType type,int32_t *pCard_index);
 
-//if ture, return 1, else return 0.
+//if true, return 1, else return 0.
 int32_t have_card(sPile pile,eType type);
 int32_t is_player_exist(int32_t player_index);
 int32_t is_game_end();

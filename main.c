@@ -25,8 +25,19 @@ int main(){
 	while(1){
 		Stage=0;//determine
 		print_all_status();
-		if(have_card(player[PlayerNow].equip,Dynamite))det_Dynamite();
-		if(have_card(player[PlayerNow].equip,Jail))det_Jail();
+		if(have_card(player[PlayerNow].equip,Dynamite)){
+			det_Dynamite();
+			if(!player[PlayerNow].alive){
+				next_round();
+				continue;
+			}
+		}
+		if(have_card(player[PlayerNow].equip,Jail)){
+			if(det_Jail()==1){
+				next_round();
+				continue;
+			}
+		}
 
 		Stage=1;//draw cards
 		print_all_status();
