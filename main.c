@@ -103,8 +103,9 @@ int main(){
 					printf("Because you are Calamity Janet, your Missed changed to Bang.\n");
 			}
 			use_card(num);
-			if(!player[PlayerNow].alive)break;
+			if(!player[PlayerNow].alive||is_game_end())break;
 		}
+		if(is_game_end())break;
 		if(!player[PlayerNow].alive){
 			next_round();
 			continue;
