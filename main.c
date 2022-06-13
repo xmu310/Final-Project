@@ -6,8 +6,16 @@
 #include<time.h>
 #include"src/def.h"
 #include"src/func.h"
-int main(){
+int main(int argc,char* argv[]){
 	int32_t num,discard_num;
+	char c,cc;
+	SleepNum=1;
+	while((c=getopt(argc,argv,"s:"))!=-1){
+		if(c=='s'){
+			if(sscanf(optarg,"%d%c",&SleepNum,&cc)!=1){printf("Error\n");return 0;}
+			if(SleepNum<0||SleepNum>3){printf("sleep number only allowed 0-3 (0 for press enter to continue)\n");return 0;}
+		}else{printf("Error\n");return 0;}
+	}
 	srand(time(0));
 	while(1){
 		system("clear");

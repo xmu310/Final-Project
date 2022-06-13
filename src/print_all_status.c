@@ -4,10 +4,11 @@
 
 void print_all_status(){
 	fflush(stdout);
-	//printf("\nPress enter to continue\n");
-	//scanf("%*[^\n]");
-	//scanf("%*c");
-	sleep(2);
+	if(SleepNum==0){
+		printf("\nPress enter to continue\n");
+		scanf("%*[^\n]");
+		scanf("%*c");
+	}else sleep(SleepNum);
 	system("clear");
 	printf("Round: %d\n",Round);
 	printf(">>>>>>>>>>>>>>>>>>\n");

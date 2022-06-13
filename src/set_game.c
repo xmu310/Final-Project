@@ -27,6 +27,7 @@ sPlayer player[PlayerMaxNum];
 int32_t Round;
 int32_t Stage;
 int32_t BangNum;
+int32_t SleepNum;
 
 void checkdef();
 void init_arr();
