@@ -8,7 +8,10 @@ int32_t print_player_status(int32_t player_index){
 		if(player[player_index].iden==Sheriff)printf("%s",iden_nametxt[player[player_index].iden]);
 		printf("\n%s\n",role_nametxt[player[player_index].role]);
 		printf("%s\n",role_helptxt[player[player_index].role]);
-		printf("hand card number: %d\n",player[player_index].hand.num);
+		if(player_index!=PlayerHuman){
+			printf("hand/equip card number: (%d,%d)\n",player[player_index].hand.num,player[player_index].equip.num);
+		}
+		if(player_index==PlayerHuman)printf("hand card number: %d\n",player[player_index].hand.num);
 		if(player_index==PlayerHuman)for(int j=0;j<player[player_index].hand.num;j++){
 			printf("%d. (%s,%s) %s\n",j+1,
 					suit_nametxt[player[player_index].hand.card[j].suit],
@@ -16,7 +19,7 @@ int32_t print_player_status(int32_t player_index){
 					type_nametxt[player[player_index].hand.card[j].type]);
 			printf("%s\n",type_helptxt[player[player_index].hand.card[j].type]);
 		}
-		printf("equip card number: %d\n",player[player_index].equip.num);
+		if(player_index==PlayerHuman)printf("equip card number: %d\n",player[player_index].equip.num);
 		for(int j=0;j<player[player_index].equip.num;j++){
 			printf("%d. (%s,%s) %s\n",j+1,
 					suit_nametxt[player[player_index].equip.card[j].suit],

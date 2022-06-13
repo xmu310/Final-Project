@@ -10,21 +10,18 @@ void print_all_status(){
 		scanf("%*c");
 	}else sleep(SleepNum);
 	system("clear");
-	printf("Round: %d\n",Round);
-	printf(">>>>>>>>>>>>>>>>>>\n");
 	for(int i=0;i<PlayerNum;i++){
 		if(i!=PlayerHuman){
-			if(i)printf("----------------\n");
+			printf("----------------\n");
 			print_player_status(i);
 		}
 	}
-	printf("----------------\n");
-	printf("stock card number: %d\n",stock.num);
-	printf("discard card number: %d\n",discard.num);
 	printf(">>>>>>>>>>>>>>>>>>\n");
-	printf("(You)\n");
+	printf("(You) ");
 	print_player_status(PlayerHuman);
 	printf(">>>>>>>>>>>>>>>>>>\n");
+	printf("Round: %d\n",Round);
+	printf("stock/discard card number: (%d,%d)\n",stock.num,discard.num);
 	printf("Now: Player%d\n",PlayerNow+1);
 	if(Stage==0)printf("Stage: determine\n");
 	if(Stage==1)printf("Stage: draw cards\n");
