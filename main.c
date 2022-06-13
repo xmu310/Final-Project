@@ -59,9 +59,8 @@ int main(int argc,char* argv[]){
 			Pedro_Ramirez_draw();
 		}else{
 			get_stock(PlayerNow);
-			printf("Player%d gets a card from stock pile.\n",PlayerNow+1);
 			get_stock(PlayerNow);
-			printf("Player%d gets a card from stock pile.\n",PlayerNow+1);
+			printf("Player%d gets 2 cards from stock pile.\n",PlayerNow+1);
 		}
 
 		Stage=2;//use cards

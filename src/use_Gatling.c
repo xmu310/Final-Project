@@ -1,9 +1,11 @@
 #include"func.h"
+#include<unistd.h>
 
 void use_Gatling(int32_t card_index){
 	int32_t num;
 	get_card(&discard,&player[PlayerNow].hand,card_index);
 	for(int i=0;i<PlayerNum;i++){
+		sleep(1);
 		if(player[i].alive&&i!=PlayerNow){
 			if(player[i].role==Jourdonnais){
 				printf("Because player%d is Jourdonnais, he/she has built-in barrel.\n",i+1);	

@@ -1,5 +1,6 @@
 #include"func.h"
 #include<stdlib.h>
+#include<unistd.h>
 
 void use_General_Store(int32_t card_index){
 	get_card(&discard,&player[PlayerNow].hand,card_index);
@@ -8,9 +9,10 @@ void use_General_Store(int32_t card_index){
 	for(int i=0;i<total;i++){
 		get_stock(PlayerNow);
 		get_last_card(&tmp,&player[PlayerNow].hand);
-		printf("Player%d gets a card from stock pile.\n",PlayerNow+1);
 	}
+	printf("Player%d gets %d cards from stock pile.\n",PlayerNow+1,total);
 	while(1){
+		sleep(1);
 		if(player_index==PlayerHuman){
 			printf("There are %d card in the list:\n",total);
 			for(int i=0;i<total;i++){

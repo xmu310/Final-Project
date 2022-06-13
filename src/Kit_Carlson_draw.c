@@ -5,13 +5,10 @@ void Kit_Carlson_draw(){
 	int32_t num=0,ini;
 	printf("Because Player%d's role is Kit Carlson, he/she can draw three cards from stock pile to see, and put one back to stock pile.\n",PlayerNow+1);
 	get_stock(PlayerNow);
-	printf("Player%d got a card from stock pile.\n",PlayerNow+1);
 	get_stock(PlayerNow);
-	printf("Player%d got a card from stock pile.\n",PlayerNow+1);
 	get_stock(PlayerNow);
-	printf("Player%d got a card from stock pile.\n",PlayerNow+1);
+	printf("Player%d get 3 cards from stock pile.\n",PlayerNow+1);
 	if(PlayerNow==PlayerHuman){
-		printf("You drawed three cards, ");
 		ini=player[PlayerNow].hand.num-1-2;
 		for(int i=0;i<3;i++){
 			printf("%d. (%s,%s) %s\n",i+1,
