@@ -17,9 +17,7 @@ void Kit_Carlson_draw(){
 			if(num_scanf(&num,1,3))break;
 		}
 		num--;
-	}else{
-		num=rand()%3;
-	}
+	}else num=rand()%3;
 	get_card(&stock,&player[PlayerNow].hand,player[PlayerNow].hand.num-1-2+num);
 	printf("Player%d put a card back to stock pile.\n",PlayerNow+1);
 }

@@ -19,10 +19,6 @@ void use_Duel(int32_t card_index){
 			return;
 		}
 		turn=!turn;
-		if(turn){
-			who=PlayerNow;
-		}else{
-			who=player_index;
-		}
+		who=turn?PlayerNow:player_index;
 	}
 }

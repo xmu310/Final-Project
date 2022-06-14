@@ -36,9 +36,7 @@ void use_Bang(int32_t card_index){
 				printf("Determination success!\n");
 				printf("Player%d missed successfully!\n",player_index+1);
 				return;
-			}else{
-				printf("Determination failed!\n");
-			}
+			}else printf("Determination failed!\n");
 		}
 		if(find_card_index(player[player_index].equip,Barrel,&num)){
 			printf("Player%d uses a \"Barrel\".\n",player_index+1);	
@@ -46,9 +44,7 @@ void use_Bang(int32_t card_index){
 				printf("Determination success!\n");
 				printf("Player%d missed successfully!\n",player_index+1);
 				return;
-			}else{
-				printf("Determination failed!\n");
-			}
+			}else printf("Determination failed!\n");
 		}
 		if(find_card_index(player[player_index].hand,Missed,&num)){
 			get_card(&discard,&player[player_index].hand,num);
@@ -70,9 +66,7 @@ void use_Bang(int32_t card_index){
 				printf("Determination success!\n");
 				missnum++;
 				printf("Player%d missed %s successfully!\n",player_index+1,str[missnum-1]);
-			}else{
-				printf("Determination failed!\n");
-			}
+			}else printf("Determination failed!\n");
 		}
 		if(find_card_index(player[player_index].equip,Barrel,&num)){
 			printf("Player%d uses a \"Barrel\".\n",player_index+1);	
@@ -80,9 +74,7 @@ void use_Bang(int32_t card_index){
 				printf("Determination success!\n");
 				missnum++;
 				printf("Player%d missed %s successfully!\n",player_index+1,str[missnum-1]);
-			}else{
-				printf("Determination failed!\n");
-			}
+			}else printf("Determination failed!\n");
 		}
 		while(missnum<2){
 			if(find_card_index(player[player_index].hand,Missed,&num)){

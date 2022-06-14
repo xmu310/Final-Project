@@ -22,11 +22,9 @@ void Pedro_Ramirez_draw(){
 			break;
 		}
 	}
-	if(num==0){
-		get_stock(PlayerNow,1);
-	}else{
+	if(num!=0){
 		get_last_card(&player[PlayerNow].hand,&discard);
 		printf("Player%d got a card from discard pile.\n",PlayerNow+1);
-	}
+	}else get_stock(PlayerNow,1);
 	get_stock(PlayerNow,1);
 }

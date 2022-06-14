@@ -6,18 +6,7 @@ int32_t ask_Sid_Ketchum(int32_t player_index){
 	while(1){
 		if(player[player_index].blood>=player[player_index].maxblood||player[player_index].hand.num<2)break;
 		printf("Because Player%d's role is Sid Ketchum, he/she has chanced to discarded two cards to add blood!\n",player_index+1);
-		if(player_index==PlayerHuman){
-			while(1){
-				printf("Wanna do it?(1 for Yes, 0 for No): ");
-				if(num_scanf(&num,0,1))break;
-			}
-		}else num=rand()%2;
-		if(num==1){
-			printf("Player%d choose Yes!\n",player_index+1);
-		}else{
-			printf("Player%d choose No!\n",player_index+1);
-			break;
-		}
+		if(!YesNo(player_index))break;
 		for(int i=0;i<2;i++){
 			if(player_index==PlayerHuman){
 				while(1){

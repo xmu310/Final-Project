@@ -21,9 +21,7 @@ void use_General_Store(int32_t card_index){
 				if(num_scanf(&num,1,total))break;
 			}
 			num--;
-		}else{
-			num=rand()%total;
-		}
+		}else num=rand()%total;
 		printf("Player%d gets a card.\n",player_index+1);
 		get_card(&player[player_index].hand,&tmp,num);
 		total--;

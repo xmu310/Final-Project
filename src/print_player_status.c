@@ -1,6 +1,5 @@
 #include"func.h"
-int32_t print_player_status(int32_t player_index){
-	if(player_index<0||player_index>PlayerNum)return 0;
+void print_player_status(int32_t player_index){
 	printf("player%d ",player_index+1);
 	if(player[player_index].alive){
 		printf("(blood %d/%d): ",player[player_index].blood,player[player_index].maxblood);
@@ -27,5 +26,4 @@ int32_t print_player_status(int32_t player_index){
 			printf("%s\n",type_helptxt[player[player_index].equip.card[j].type]);
 		}
 	}else printf("<dead>: %s\n",iden_nametxt[player[player_index].iden]);
-	return 1;
 }

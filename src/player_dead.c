@@ -1,6 +1,5 @@
 #include"func.h"
-int32_t player_dead(int32_t player_index){
-	if(!is_player_exist(player_index))return 0;
+void player_dead(int32_t player_index){
 	player[player_index].alive=0;
 	PlayerAlive--;
 	AliveArr[player[player_index].iden]--;
@@ -9,5 +8,4 @@ int32_t player_dead(int32_t player_index){
 		if(player[i].alive&&player[i].role==Vulture_Sam)combine_pile(&player[i].hand,&player[player_index].hand);
 	}
 	combine_pile(&discard,&player[player_index].hand);
-	return 1;
 }

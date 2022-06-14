@@ -5,10 +5,7 @@ void use_Cat_Balou(int32_t card_index){
 		if(i==PlayerNow||!player[i].alive)continue;
 		if(player[i].hand.num+player[i].equip.num>0)have_card_player++;
 	}
-	if(have_card_player==0){
-		printf("Because no other player has card, you can't use this card!\n");
-		return;
-	}
+	if(have_card_player==0){printf("Because no other player has card, you can't use this card!\n");return;}
 	get_card(&discard,&player[PlayerNow].hand,card_index);
 	if(PlayerNow==PlayerHuman){
 		while(1){

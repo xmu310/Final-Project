@@ -30,11 +30,9 @@ void Jesse_Jones_draw(){
 			}else break;
 		}
 	}
-	if(num==-1){
-		get_stock(PlayerNow,1);
-	}else{
+	if(num!=-1){
 		get_last_card(&player[PlayerNow].hand,&player[num].hand);
 		printf("Player%d got a card from Player%d.\n",PlayerNow+1,num+1);
-	}
+	}else get_stock(PlayerNow,1);
 	get_stock(PlayerNow,1);
 }

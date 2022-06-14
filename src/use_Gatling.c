@@ -11,9 +11,7 @@ void use_Gatling(int32_t card_index){
 					printf("Determination success!\n");
 					printf("Player%d missed successfully!\n",i+1);
 					continue;
-				}else{
-					printf("Determination failed!\n");
-				}
+				}else printf("Determination failed!\n");
 			}
 			if(find_card_index(player[i].equip,Barrel,&num)){
 				printf("Player%d uses a \"Barrel\".\n",i+1);	
@@ -21,9 +19,7 @@ void use_Gatling(int32_t card_index){
 					printf("Determination success!\n");
 					printf("Player%d missed successfully!\n",i+1);
 					continue;
-				}
-				}else{
-					printf("Determination failed!\n");
+				}else printf("Determination failed!\n");
 			}
 			if(find_card_index(player[i].hand,Missed,&num)){
 				get_card(&discard,&player[i].hand,num);
