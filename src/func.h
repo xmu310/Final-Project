@@ -67,6 +67,7 @@ int32_t is_game_end();
 //Second is either player1 or player2 is dead.
 //Third is player1 and player2 are the same.
 int32_t distance(int32_t player1_index,int32_t player2_index);
+int32_t weapon_distance();
 
 //if Sheriff&Deputy_Sheriff win, return 1
 //else if Outlaw wins, return 2

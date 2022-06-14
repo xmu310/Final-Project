@@ -19,12 +19,12 @@ int32_t player_minus_blood(int32_t player1_index,int32_t player2_index){
 		printf("Because player%d's blood is %d ( <= 0 ) ,\n",player2_index+1,player[player2_index].blood);
 		printf("Player%d was killed by player%d!\n",player2_index+1,player1_index+1);
 		player_dead(player2_index);
-		if(player[player1_index].role==Sheriff&&player[player2_index].role==Deputy_Sheriff){
+		if(player[player1_index].iden==Sheriff&&player[player2_index].iden==Deputy_Sheriff){
 			printf("Because player%d (Deputy Sheriff) was killed by player%d (Sheriff), player%d should discard all the cards!\n",player2_index+1,player1_index+1,player1_index+1);
 			combine_pile(&discard,&player[player1_index].hand);
 			combine_pile(&discard,&player[player1_index].equip);
 		}
-		if(player[player2_index].role==Outlaw){
+		if(player[player2_index].iden==Outlaw){
 			printf("Because player%d (Outlaw) was killed by player%d, player%d can get 3 cards from stock pile!\n",player2_index+1,player1_index+1,player1_index+1);
 			get_stock(player1_index);
 			printf("Player%d gets a card from stock pile.\n",player1_index+1);
@@ -34,4 +34,5 @@ int32_t player_minus_blood(int32_t player1_index,int32_t player2_index){
 			printf("Player%d gets a card from stock pile.\n",player1_index+1);
 		}
 	}
+	return 1;
 }

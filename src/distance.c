@@ -14,6 +14,5 @@ int32_t distance(int32_t player1_index,int32_t player2_index){
 	if(have_card(player[player1_index].equip,Scope))re--;
 	if(have_card(player[player1_index].equip,Appaloosa))re--;
 	if(have_card(player[player2_index].equip,Mustang))re++;
-	if(re<1)re=1;
 	return re;
 }

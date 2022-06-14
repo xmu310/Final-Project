@@ -22,7 +22,7 @@ void use_Panic(int32_t card_index){
 			}
 			player_index--;
 			if(player_index==PlayerNow||!player[player_index].alive){
-				printf("You can't choose yourself!\n");
+				printf("You can't choose yourself or dead player!\n");
 				printf("Please enter again!\n\n");
 				continue;
 			}
@@ -65,6 +65,9 @@ void use_Panic(int32_t card_index){
 		while(1){
 			player_index=rand()%PlayerNum;
 			if(player_index==PlayerNow||!player[player_index].alive){
+				continue;
+			}
+			if(distance(PlayerNow,player_index)>1){
 				continue;
 			}
 			if(player[player_index].hand.num+player[player_index].equip.num<=0){
