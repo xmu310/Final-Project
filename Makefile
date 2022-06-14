@@ -1,4 +1,6 @@
-.IGNORE:all
+.IGNORE: all debug
+
+.PHONY: all debug clean 
 
 SRC := $(wildcard src/*.c)
 OBJ := $(patsubst src/%.c,obj/%.o,$(SRC))
