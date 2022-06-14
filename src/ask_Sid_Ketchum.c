@@ -14,9 +14,7 @@ int32_t ask_Sid_Ketchum(int32_t player_index){
 					if(num_scanf(&num,1,player[player_index].hand.num))break;
 				}
 				num--;
-			}else{
-				num=rand()%player[player_index].hand.num;
-			}
+			}else num=rand()%player[player_index].hand.num;
 			printf("Player%d chooses %d. %s\n",player_index+1,num+1,type_nametxt[player[player_index].hand.card[num].type]);
 			get_card(&discard,&player[player_index].hand,num);
 			printf("Player%d discards a card to discard pile.\n",player_index+1);
