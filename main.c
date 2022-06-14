@@ -19,6 +19,7 @@ int main(int argc,char* argv[]){
 	srand(time(0));
 	while(1){
 		system("clear");
+		print_ascii(aStart);
 		printf("Please enter the player number(4-7, Exit:0): ");
 		if(!num_scanf(&num)){
 			printf("Not integer!\n");

@@ -120,3 +120,11 @@ extern int32_t Round;
 extern int32_t Stage;//0 for determine, 1 for draw cards, 2 for use cards, 3 for discard cards
 extern int32_t BangNum;
 extern int32_t SleepNum;
+
+typedef enum _eAscii{
+	aStart,
+	aBomb,
+	aExplode,
+	aJail,
+	AsciiNum
+}eAscii;
