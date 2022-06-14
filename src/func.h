@@ -5,6 +5,7 @@ void shuffling();
 void combine_pile(sPile *pile1,sPile *pile2);
 void print_all_status();//it will wait 2 sec, then clear screen, print all status.
 void print_who_win();
+void print_ascii(eAscii opt);
 void next_round();
 void end_game();
 
