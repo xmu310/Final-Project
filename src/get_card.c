@@ -1,5 +1,4 @@
 #include"func.h"
-
 int32_t get_card(sPile *pile1,sPile *pile2,int32_t card_index){
 	if(card_index<0||card_index>=pile2->num)return 0;
 	pile1->card[pile1->num]=pile2->card[card_index];

@@ -1,10 +1,10 @@
 #include"func.h"
-
-int32_t get_stock(int32_t player_index){
-	if(!is_player_exist(player_index))return 0;
-	if(!get_last_card(&player[player_index].hand,&stock)){
-		shuffling();
-		get_last_card(&player[player_index].hand,&stock);
+void get_stock(int32_t player_index,int32_t cardnum){
+	for(int i=0;i<cardnum;i++){
+		if(!get_last_card(&player[player_index].hand,&stock)){
+			shuffling();
+			get_last_card(&player[player_index].hand,&stock);
+		}
 	}
-	return 1;
+	printf("Player%d gets %d card(s) from stock pile.\n",player_index+1,cardnum);
 }

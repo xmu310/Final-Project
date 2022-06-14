@@ -1,6 +1,4 @@
 #include"func.h"
-#include<unistd.h>
-
 void use_Indians(int32_t card_index){
 	int32_t num;
 	get_card(&discard,&player[PlayerNow].hand,card_index);

@@ -1,6 +1,4 @@
 #include"func.h"
-#include<stdlib.h>
-
 void use_Panic(int32_t card_index){
 	int32_t have_card_player=0,player_index,type,num;
 	for(int i=0;i<PlayerNum;i++){

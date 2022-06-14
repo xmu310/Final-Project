@@ -1,5 +1,4 @@
 #include"func.h"
-
 int32_t weapon_distance(){
 	int32_t re=1;
 	if(have_card(player[PlayerNow].equip,Schofield))re+=1;

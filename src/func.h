@@ -1,13 +1,12 @@
 #pragma once
 #include"def.h"
 
+void set_game();
 void shuffling();
 void combine_pile(sPile *pile1,sPile *pile2);
+void get_stock(int32_t player_index,int32_t cardnum);//if stock pile have no card, it'll combine stock pile and dicard pile to stock pile, and shuffling, and pick a card.
 void print_all_status();//it will wait 2 sec, then clear screen, print all status.
-void print_who_win();
 void print_ascii(eAscii opt);
-void next_round();
-void end_game();
 
 sCard det(int32_t player_index);//If this player is Lucky Duke, draw two cards for him/her, and ask him/her which card he/she wants to use to determine. If not, only draw a card from stock. And both return sCard, you don't need to recycle it, it just tmp card.
 void det_Dynamite();
@@ -43,10 +42,8 @@ void use_Rev_Carabine(int32_t card_index);
 void use_Winchedster(int32_t card_index);
 
 //if success, return 1, else return 0.
-int32_t set_game(int32_t player_num);
 int32_t get_card(sPile *pile1,sPile *pile2,int32_t card_index);
 int32_t get_last_card(sPile *pile1,sPile *pile2);
-int32_t get_stock(int32_t player_index);//if stock pile have no card, it'll combine stock pile and dicard pile to stock pile, and shuffling, and pick a card.
 int32_t num_scanf(int32_t *num);
 int32_t print_player_status(int32_t player_index);
 int32_t dead_struggling(int32_t player_index);//if player's blood <= 0, ask player whether use beer to recovery.
@@ -60,7 +57,6 @@ int32_t find_card_index(sPile pile,eType type,int32_t *pCard_index);
 //if true, return 1, else return 0.
 int32_t have_card(sPile pile,eType type);
 int32_t is_player_exist(int32_t player_index);
-int32_t is_game_end();
 
 //if success, return distance, else return 0;
 //There're three cases return 0:

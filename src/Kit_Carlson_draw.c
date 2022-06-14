@@ -1,13 +1,8 @@
 #include"func.h"
-#include"stdlib.h"
-
 void Kit_Carlson_draw(){
 	int32_t num=0,ini;
 	printf("Because Player%d's role is Kit Carlson, he/she can draw three cards from stock pile to see, and put one back to stock pile.\n",PlayerNow+1);
-	get_stock(PlayerNow);
-	get_stock(PlayerNow);
-	get_stock(PlayerNow);
-	printf("Player%d get 3 cards from stock pile.\n",PlayerNow+1);
+	get_stock(PlayerNow,3);
 	if(PlayerNow==PlayerHuman){
 		ini=player[PlayerNow].hand.num-1-2;
 		for(int i=0;i<3;i++){

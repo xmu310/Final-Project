@@ -1,6 +1,4 @@
 #include"func.h"
-#include<stdlib.h>
-
 int32_t ask_Sid_Ketchum(int32_t player_index){
 	int32_t num;
 	if(!is_player_exist(player_index))return 0;

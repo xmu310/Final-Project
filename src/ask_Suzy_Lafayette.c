@@ -1,6 +1,4 @@
 #include"func.h"
-#include<stdlib.h>
-
 int32_t ask_Suzy_Lafayette(int32_t player_index){
 	int32_t num;
 	if(!is_player_exist(player_index))return 0;
@@ -18,8 +16,7 @@ int32_t ask_Suzy_Lafayette(int32_t player_index){
 		printf("Player%d choose No!\n",player_index+1);
 		return 1;
 	}
-	get_stock(player_index+1);
-	printf("Player%d got a card from stock pile.\n",player_index+1);
+	get_stock(player_index,1);
 	print_all_status();
 	return 1;
 }

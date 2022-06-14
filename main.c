@@ -21,48 +21,39 @@ int main(int argc,char* argv[]){
 		system("clear");
 		print_ascii(aStart);
 		printf("Please enter the player number(4-7, Exit:0): ");
-		if(!num_scanf(&num)){
+		if(!num_scanf(&PlayerNum)){
 			printf("Not integer!\n");
-		}else if(!num){
+		}else if(!PlayerNum){
 			return 0;
-		}else if(num<4||num>7){
+		}else if(PlayerNum<4||PlayerNum>7){
 			printf("number should be in 4 to 7\n");
 		}else break;
 		sleep(1);
 	}
-	if(!set_game(num)){printf("Error!\n");return 0;}
-	while(1){
+	set_game();
+	for(Round=1;!who_win();Round++){
+		while(1){
+			PlayerNow=(PlayerNow+1)%PlayerNum;
+			if(player[PlayerNow].alive)break;
+		}
+		BangNum=0;
+
 		Stage=0;//determine
 		print_all_status();
 		if(have_card(player[PlayerNow].equip,Dynamite)){
 			det_Dynamite();
-			if(!player[PlayerNow].alive){
-				next_round();
-				continue;
-			}
+			if(who_win())break;
+			if(!player[PlayerNow].alive)continue;
 		}
-		if(have_card(player[PlayerNow].equip,Jail)){
-			if(det_Jail()==1){
-				next_round();
-				continue;
-			}
-		}
+		if(have_card(player[PlayerNow].equip,Jail)&&det_Jail()==1)continue;
 
 		Stage=1;//draw cards
 		print_all_status();
-		if(player[PlayerNow].role==Black_Jack){
-			Black_Jack_draw();
-		}else if(player[PlayerNow].role==Jesse_Jones){
-			Jesse_Jones_draw();
-		}else if(player[PlayerNow].role==Kit_Carlson){
-			Kit_Carlson_draw();
-		}else if(player[PlayerNow].role==Pedro_Ramirez){
-			Pedro_Ramirez_draw();
-		}else{
-			get_stock(PlayerNow);
-			get_stock(PlayerNow);
-			printf("Player%d gets 2 cards from stock pile.\n",PlayerNow+1);
-		}
+		if(player[PlayerNow].role==Black_Jack)Black_Jack_draw();
+		else if(player[PlayerNow].role==Jesse_Jones)Jesse_Jones_draw();
+		else if(player[PlayerNow].role==Kit_Carlson)Kit_Carlson_draw();
+		else if(player[PlayerNow].role==Pedro_Ramirez)Pedro_Ramirez_draw();
+		else get_stock(PlayerNow,2);
 
 		Stage=2;//use cards
 		n=0;
@@ -112,14 +103,11 @@ int main(int argc,char* argv[]){
 					printf("Because you are Calamity Janet, your Missed changed to Bang.\n");
 			}
 			use_card(num);
-			if(!player[PlayerNow].alive||is_game_end())break;
+			if(!player[PlayerNow].alive||who_win())break;
 			n++;
 		}
-		if(is_game_end())break;
-		if(!player[PlayerNow].alive){
-			next_round();
-			continue;
-		}
+		if(who_win())break;
+		if(!player[PlayerNow].alive)continue;
 
 		Stage=3;//discard cards
 		discard_num=0;
@@ -166,10 +154,14 @@ int main(int argc,char* argv[]){
 				}
 			}
 		}
-
-		next_round();
 	}
-	print_who_win();
-	end_game();
+	if(who_win()==1)printf("The winner is Sheriff and Deputy Sheriff.\n");
+	if(who_win()==2)printf("The winner is Outlaw.\n");
+	if(who_win()==3)printf("The winner is Renegade.\n");
+	printf(">>>>>>>>>>>>>>>>>>\n");
+	if(who_win()==1&&(player[PlayerHuman].iden==Sheriff||player[PlayerHuman].iden==Deputy_Sheriff)||
+			who_win()==2&&player[PlayerHuman].iden==Outlaw||
+			who_win()==3&&player[PlayerHuman].iden==Renegade
+			)printf("You win!\n");else printf("You lose\n");
 	return 0;
 }

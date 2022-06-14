@@ -1,6 +1,4 @@
 #include"func.h"
-#include<stdlib.h>
-
 void use_Bang(int32_t card_index){
 	int32_t be_attacked_player=0,player_index,num,missnum=0;
 	char *str[2]={"once","twice"};

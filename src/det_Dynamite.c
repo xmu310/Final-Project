@@ -62,10 +62,15 @@ void det_Dynamite(){
         }
     }
     else{ // not explode
-        printf("Dinamite pass to Player%d\n", ((PlayerNow+1)%PlayerNum)+1);
+	int32_t next_player=PlayerNow;
+	while(1){
+		next_player=(next_player+1)%PlayerNum;
+		if(player[next_player].alive)break;
+	}
+        printf("Dinamite pass to Player%d\n", next_player+1);
         int32_t card_index = -1;
         find_card_index(player[PlayerNow].equip, Dynamite, &card_index);
-        get_card(&player[(PlayerNow+1)%PlayerNum].equip, &player[PlayerNow].equip, card_index);		
+        get_card(&player[next_player].equip, &player[PlayerNow].equip, card_index);		
     }
     get_last_card(&discard, &temp); // discard determine card
     // return 1;

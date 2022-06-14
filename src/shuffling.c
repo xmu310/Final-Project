@@ -1,6 +1,4 @@
 #include"func.h"
-#include<stdlib.h>
-
 void shuffling(){
 	combine_pile(&stock,&discard);
 	for(int i=0;i<stock.num;i++){

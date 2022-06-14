@@ -1,7 +1,4 @@
 #include"func.h"
-#include"stdlib.h"
-#include"unistd.h"
-
 void print_all_status(){
 	fflush(stdout);
 	if(SleepNum==0){

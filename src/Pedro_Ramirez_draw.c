@@ -1,6 +1,4 @@
 #include"func.h"
-#include<stdlib.h>
-
 void Pedro_Ramirez_draw(){
 	int32_t num=0;
 	printf("Because Player%d's role is Pedro Ramirez, his/her first card can draw from stock pile or discard pile.\n",PlayerNow+1);
@@ -30,12 +28,10 @@ void Pedro_Ramirez_draw(){
 		}
 	}
 	if(num==0){
-		get_stock(PlayerNow);
-		printf("Player%d got a card from stock pile.\n",PlayerNow+1);
+		get_stock(PlayerNow,1);
 	}else{
 		get_last_card(&player[PlayerNow].hand,&discard);
 		printf("Player%d got a card from discard pile.\n",PlayerNow+1);
 	}
-	get_stock(PlayerNow);
-	printf("Player%d got a card from stock pile.\n",PlayerNow+1);
+	get_stock(PlayerNow,1);
 }

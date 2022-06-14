@@ -1,5 +1,4 @@
 #include"func.h"
-
 void use_card(int32_t card_index){
 	if(player[PlayerNow].hand.card[card_index].type==Missed&&player[PlayerNow].role==Calamity_Janet){
 		use_Bang(card_index);

@@ -1,7 +1,4 @@
 #include"func.h"
-#include<stdlib.h>
-#include<unistd.h>
-
 void use_Duel(int32_t card_index){
 	int32_t player_index,num,turn=0,who=0;
 	get_card(&discard,&player[PlayerNow].hand,card_index);

@@ -1,5 +1,4 @@
 #include"func.h"
-
 int32_t distance(int32_t player1_index,int32_t player2_index){
 	int32_t re=0;
 	if(!is_player_exist(player1_index))return 0;

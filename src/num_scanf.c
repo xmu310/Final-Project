@@ -1,7 +1,4 @@
 #include"func.h"
-#include<stdlib.h>
-#include<string.h>
-
 int32_t num_scanf(int32_t *num){
 	int32_t re;
 	char buf[10000]={0},*endp;

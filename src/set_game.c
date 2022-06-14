@@ -1,71 +1,68 @@
 #include"func.h"
-#include<stdlib.h>
-#include<string.h>
-
-char *suit_nametxt[SuitNum];
-char *iden_nametxt[IdenNum];
-char *iden_helptxt[IdenNum];
-int32_t SheriffAlive;
-int32_t DeputySheriffAlive;
-int32_t OutlawAlive;
-int32_t RenegadeAlive;
-int32_t role_blood[RoleNum];
-char *role_nametxt[RoleNum];
-char *role_helptxt[RoleNum];
-char *type_nametxt[TypeNum];
-char *type_helptxt[TypeNum];
-char *rank_nametxt[RankNum+1];
+char *suit_nametxt[4]={"Spade","Heart","Diamond","Club"};
+char *iden_nametxt[4];
+char *iden_helptxt[4];
+int32_t role_blood[16];
+char *role_nametxt[16];
+char *role_helptxt[16];
+char *type_nametxt[23];
+char *type_helptxt[23];
+char *rank_nametxt[1+13]={"0","A","2","3","4","5","6","7","8","9","10","J","Q","K"};
 
 sPile stock;
 sPile discard;
 
 int32_t PlayerNum;
-int32_t PlayerNow;
+int32_t PlayerNow=-1;
 int32_t PlayerHuman;
+int32_t AliveArr[4]={0};
 int32_t PlayerAlive;
-sPlayer player[PlayerMaxNum];
+sPlayer player[7]={0};
 int32_t Round;
 int32_t Stage;
-int32_t BangNum;
+int32_t BangNum=0;
 int32_t SleepNum;
 
-void checkdef();
 void init_arr();
 void init_card();
-void init_player();
 
-int32_t set_game(int32_t player_num){
-	checkdef();
-	if(player_num<4||player_num>7)return 0;
-	PlayerNum=player_num;
+void set_game(){
 	init_arr();
 	init_card();
-	init_player();
-	return 1;
+	PlayerHuman=rand()%PlayerNum;
+	PlayerAlive=PlayerNum;
+	shuffling();
+	eIden player_iden_arr[7]={Sheriff,Outlaw,Outlaw,Renegade,Deputy_Sheriff,Outlaw,Sheriff};
+	for(int i=0;i<7;i++){
+		player[i].iden=player_iden_arr[i];
+		AliveArr[player[i].iden]++;
+	}
+	for(int i=0;i<100;i++){
+		int32_t x,y;
+		x=rand()%PlayerNum;
+		while((y=rand()%PlayerNum)==x)1;
+		eIden tmp=player[x].iden;
+		player[x].iden=player[y].iden;
+		player[y].iden=tmp;
+	}
+	for(int i=0;i<PlayerNum;i++){
+		int32_t check=0;
+		while(!check){
+			check=1;
+			player[i].role=rand()%16;
+			for(int j=0;j<i;j++)if(player[i].role==player[j].role)check=0;
+		}
+		player[i].maxblood=role_blood[player[i].role];
+		if(player[i].iden==Sheriff)player[i].maxblood++;
+		player[i].blood=player[i].maxblood;
+		player[i].alive=1;
+		for(int j=0;j<player[i].blood;j++)get_last_card(&player[i].hand,&stock);
+	}
 }
-
-#define checkdef_m(x,y) do{if(x!=y){printf(#x" in def.h is wrong!\n");exit(0);}}while(0)
-void checkdef(){
-	checkdef_m(SuitNum,4);
-	checkdef_m(IdenNum,4);
-	checkdef_m(RoleNum,16);
-	checkdef_m(TypeNum,23);
-	checkdef_m(CardNum,80);
-	checkdef_m(RankNum,13);
-	checkdef_m(PlayerMaxNum,7);
-}
-#undef checkdef_m
 
 void init_arr(){
 	FILE *fp;
 	char buf[100]={0};
-
-#define InitSuit_m(x) suit_nametxt[x]=#x 
-	InitSuit_m(Spade);
-	InitSuit_m(Heart);
-	InitSuit_m(Diamond);
-	InitSuit_m(Club);
-#undef InitSuit_m
 
 #define checkfopen_m(x) do{\
 	fp=fopen("data/"#x".txt","r");\
@@ -146,28 +143,10 @@ void init_arr(){
 #undef rcore_fscanf_m
 #undef core_fscanf_m
 #undef checkfopen_m
-
-
-#define InitRank_m(x) rank_nametxt[x]=#x 
-	InitRank_m(0);
-	InitRank_m(A);
-	InitRank_m(2);
-	InitRank_m(3);
-	InitRank_m(4);
-	InitRank_m(5);
-	InitRank_m(6);
-	InitRank_m(7);
-	InitRank_m(8);
-	InitRank_m(9);
-	InitRank_m(10);
-	InitRank_m(J);
-	InitRank_m(Q);
-	InitRank_m(K);
 }
-#undef InitRank_m 
 
 int32_t add_card(eType type,eSuit suit,eRank rank){
-	if(stock.num>=CardNum)return 0;
+	if(stock.num>=80)return 0;
 	stock.card[stock.num].type=type;
 	stock.card[stock.num].suit=suit;
 	stock.card[stock.num].rank=rank;
@@ -246,57 +225,5 @@ void init_card(){
 
 	add_card(Winchedster,Spade,8);
 
-	if(stock.num!=80){printf("added card (%d) != CardNum (%d)\n",stock.num,CardNum);exit(0);}
-}
-
-void init_player(){
-	PlayerNow=0;
-	SheriffAlive=0;
-	DeputySheriffAlive=0;
-	OutlawAlive=0;
-	RenegadeAlive=0;
-	PlayerHuman=rand()%PlayerNum;
-	PlayerAlive=PlayerNum;
-	BangNum=0;
-	shuffling();
-	eIden player_iden_arr[PlayerMaxNum]={
-		Sheriff,
-		Outlaw,
-		Outlaw,
-		Renegade,
-		Deputy_Sheriff,
-		Outlaw,
-		Sheriff
-	};
-	for(int i=0;i<PlayerMaxNum;i++){
-		player[i].iden=player_iden_arr[i];
-		if(player[i].iden==Sheriff)SheriffAlive++;
-		if(player[i].iden==Deputy_Sheriff)DeputySheriffAlive++;
-		if(player[i].iden==Outlaw)OutlawAlive++;
-		if(player[i].iden==Renegade)RenegadeAlive++;
-	}
-	for(int i=0;i<100;i++){
-		int32_t x,y;
-		x=rand()%PlayerNum;
-		while((y=rand()%PlayerNum)==x)1;
-		eIden tmp=player[x].iden;
-		player[x].iden=player[y].iden;
-		player[y].iden=tmp;
-	}
-	for(int i=0;i<PlayerNum;i++){
-		int32_t check=0;
-		while(!check){
-			check=1;
-			player[i].role=rand()%RoleNum;
-			for(int j=0;j<i;j++)if(player[i].role==player[j].role)check=0;
-		}
-		player[i].maxblood=role_blood[player[i].role];
-		if(player[i].iden==Sheriff)player[i].maxblood++;
-		player[i].blood=player[i].maxblood;
-		player[i].alive=1;
-		player[i].hand.num=0;
-		player[i].equip.num=0;
-		for(int j=0;j<player[i].blood;j++)get_last_card(&player[i].hand,&stock);
-	}
-	Round=1;
+	if(stock.num!=80){printf("added card (%d) != CardNum (80)\n",stock.num);exit(0);}
 }

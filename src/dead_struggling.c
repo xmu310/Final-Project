@@ -1,5 +1,4 @@
 #include"func.h"
-
 int32_t dead_struggling(int32_t player_index){
 	int32_t card_index,num;
 	if(!is_player_exist(player_index)||!player[player_index].alive)return 0;

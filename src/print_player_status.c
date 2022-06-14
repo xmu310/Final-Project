@@ -1,5 +1,4 @@
 #include"func.h"
-
 int32_t print_player_status(int32_t player_index){
 	if(player_index<0||player_index>PlayerNum)return 0;
 	printf("player%d ",player_index+1);

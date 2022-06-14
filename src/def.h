@@ -1,29 +1,16 @@
 #pragma once
 #include<stdio.h>
 #include<stdint.h>
+#include<stdlib.h>
+#include<unistd.h>
+#include<string.h>
 
-typedef enum _eSuit{
-	Spade,
-	Heart,
-	Diamond,
-	Club,
-	SuitNum//4
-}eSuit;
-extern char *suit_nametxt[SuitNum];
+typedef enum _eSuit{Spade,Heart,Diamond,Club}eSuit;
+extern char *suit_nametxt[4];
 
-typedef enum _eIden{
-	Sheriff,
-	Deputy_Sheriff,
-	Outlaw,
-	Renegade,
-	IdenNum//4
-}eIden;
-extern int32_t SheriffAlive;
-extern int32_t DeputySheriffAlive;
-extern int32_t OutlawAlive;
-extern int32_t RenegadeAlive;
-extern char *iden_nametxt[IdenNum];
-extern char *iden_helptxt[IdenNum];
+typedef enum _eIden{Sheriff,Deputy_Sheriff,Outlaw,Renegade}eIden;
+extern char *iden_nametxt[4];
+extern char *iden_helptxt[4];
 
 typedef enum _eRole{
 	Bart_Cassidy,
@@ -41,12 +28,11 @@ typedef enum _eRole{
 	Slab_the_Killer,
 	Suzy_Lafayette,
 	Vulture_Sam,
-	Willy_the_Kid,
-	RoleNum//16
+	Willy_the_Kid
 }eRole;
-extern int32_t role_blood[RoleNum];
-extern char *role_nametxt[RoleNum];
-extern char *role_helptxt[RoleNum];
+extern int32_t role_blood[16];
+extern char *role_nametxt[16];
+extern char *role_helptxt[16];
 
 typedef enum _eType{
 	Bang,//yellow card start//
@@ -72,30 +58,22 @@ typedef enum _eType{
 	Schofield,
 	Remington,
 	Rev_Carabine,
-	Winchedster,//blue card end//
-	TypeNum//23
+	Winchedster//blue card end//
 }eType;
-extern char *type_nametxt[TypeNum];
-extern char *type_helptxt[TypeNum];
+extern char *type_nametxt[23];
+extern char *type_helptxt[23];
 
-typedef enum _eRank{
-	A=1,
-	J=11,
-	Q,
-	K
-}eRank;
-#define RankNum 13
-extern char *rank_nametxt[RankNum+1];
+typedef enum _eRank{A=1,J=11,Q,K}eRank;
+extern char *rank_nametxt[1+13];
 
 typedef struct _sCard{
 	eType type;
 	eSuit suit;
 	eRank rank;
 }sCard;
-#define CardNum 80
 typedef struct _sPile{
 	int32_t num;
-	sCard card[CardNum];
+	sCard card[80];
 }sPile;
 extern sPile stock;
 extern sPile discard;
@@ -109,12 +87,12 @@ typedef struct _sPlayer{
 	sPile hand;
 	sPile equip;
 }sPlayer;
-#define PlayerMaxNum 7
 extern int32_t PlayerNum;
 extern int32_t PlayerNow;
 extern int32_t PlayerHuman;
 extern int32_t PlayerAlive;
-extern sPlayer player[PlayerMaxNum];
+extern int32_t AliveArr[4];
+extern sPlayer player[7];
 
 extern int32_t Round;
 extern int32_t Stage;//0 for determine, 1 for draw cards, 2 for use cards, 3 for discard cards
