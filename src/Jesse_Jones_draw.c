@@ -20,14 +20,9 @@ void Jesse_Jones_draw(){
 		}
 	}else{
 		while(1){
-			if(rand()%2){
-				num=-1;
-				break;
-			}
+			if(rand()%2){num=-1;break;}
 			num=rand()%PlayerNum;
-			if(num==PlayerNow||player[num].hand.num<1){
-				continue;
-			}else break;
+			if(num!=PlayerNow&&player[num].hand.num>=1)break;
 		}
 	}
 	if(num!=-1){
