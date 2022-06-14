@@ -1,12 +1,11 @@
 #include"func.h"
-int32_t ask_Sid_Ketchum(int32_t player_index){
+void ask_Sid_Ketchum(int32_t player_index){
 	int32_t num;
-	if(!is_player_exist(player_index))return 0;
-	if(player[player_index].role!=Sid_Ketchum)return 1;
+	if(player[player_index].role!=Sid_Ketchum)return;
 	while(1){
 		if(player[player_index].blood>=player[player_index].maxblood||player[player_index].hand.num<2)break;
 		printf("Because Player%d's role is Sid Ketchum, he/she has chanced to discarded two cards to add blood!\n",player_index+1);
-		if(!YesNo(player_index))break;
+		if(!YesNo(player_index))return;
 		for(int i=0;i<2;i++){
 			if(player_index==PlayerHuman){
 				while(1){
@@ -24,5 +23,4 @@ int32_t ask_Sid_Ketchum(int32_t player_index){
 		player_plus_blood(player_index);
 		print_all_status();
 	}
-	return 1;
 }

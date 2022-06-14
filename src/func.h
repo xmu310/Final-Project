@@ -25,6 +25,9 @@ void Jesse_Jones_draw();
 void Kit_Carlson_draw();
 void Pedro_Ramirez_draw();
 
+void ask_Suzy_Lafayette(int32_t player_index);//If this player is Suzy Lafayette and have no hand card, ask him/her whether he/she wants to draw a card from stock. If this player is not Suzy Lafayette or still have hand card, then nothing to do.
+void ask_Sid_Ketchum(int32_t player_index);//If this player is Sid Ketchum and blood is not max, ask him/her whether he/she wants to discard two cards to added his blood. If this player is not Sid Ketchum or blood is max, then nothing to do.
+
 void use_card(int32_t card_index);
 void use_Bang(int32_t card_index);
 void use_Beer(int32_t card_index);
@@ -54,19 +57,11 @@ int32_t get_card(sPile *pile1,sPile *pile2,int32_t card_index);
 int32_t get_last_card(sPile *pile1,sPile *pile2);
 int32_t num_scanf(int32_t *num,int32_t lowest,int32_t highest);
 int32_t YesNo();
-int32_t ask_Sid_Ketchum(int32_t player_index);//If this player is Sid Ketchum and blood is not max, ask him/her whether he/she wants to discard two cards to added his blood. If this player is not Sid Ketchum or blood is max, then nothing to do.
-int32_t ask_Suzy_Lafayette(int32_t player_index);//If this player is Suzy Lafayette and have no hand card, ask him/her whether he/she wants to draw a card from stock. If this player is not Suzy Lafayette or still have hand card, then nothing to do.
 int32_t find_card_index(sPile pile,eType type,int32_t *pCard_index);
 
 //if true, return 1, else return 0.
 int32_t have_card(sPile pile,eType type);
-int32_t is_player_exist(int32_t player_index);
 
-//if success, return distance, else return 0;
-//There're three cases return 0:
-//First is Player1 and player2 isn't exists.
-//Second is either player1 or player2 is dead.
-//Third is player1 and player2 are the same.
 int32_t distance(int32_t player1_index,int32_t player2_index);
 int32_t weapon_distance();
 
