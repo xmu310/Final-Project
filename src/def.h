@@ -104,5 +104,6 @@ typedef enum _eAscii{
 	aBomb,
 	aExplode,
 	aJail,
+	aBeer,
 	AsciiNum
 }eAscii;

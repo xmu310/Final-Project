@@ -50,8 +50,12 @@ void print_ascii(eAscii opt){
         printf("  (_(||)-|         |-(||)_)\n");
         printf("  _________________________\n");
     }
-    // else if(){
-        
-    // }
+    else if(opt==aBeer){
+        printf(".~~~~.\n");
+        printf("i====i_\n");
+        printf("|cccc|_)\n");
+        printf("|cccc|\n");
+        printf("`-==-'\n");
+    }
     
 }
