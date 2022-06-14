@@ -2,6 +2,9 @@
 #include"def.h"
 
 void set_game();
+void player_scanf(int32_t *player_index);
+void type_scanf(int32_t player_index,int32_t *type);
+void card_scanf(int32_t player_index,int32_t type,int32_t *card_index);
 void shuffling();
 void combine_pile(sPile *pile1,sPile *pile2);
 void get_stock(int32_t player_index,int32_t cardnum);//if stock pile have no card, it'll combine stock pile and dicard pile to stock pile, and shuffling, and pick a card.
@@ -44,7 +47,7 @@ void use_Winchedster(int32_t card_index);
 //if success, return 1, else return 0.
 int32_t get_card(sPile *pile1,sPile *pile2,int32_t card_index);
 int32_t get_last_card(sPile *pile1,sPile *pile2);
-int32_t num_scanf(int32_t *num);
+int32_t num_scanf(int32_t *num,int32_t lowest,int32_t highest);
 int32_t print_player_status(int32_t player_index);
 int32_t dead_struggling(int32_t player_index);//if player's blood <= 0, ask player whether use beer to recovery.
 int32_t player_plus_blood(int32_t player_index);//if player's blood added to max, this function will printf message, so you don't need to deal with maxblood's problem.

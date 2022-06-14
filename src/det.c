@@ -26,10 +26,9 @@ sCard det(int32_t player_index){
 					type_nametxt[tmp.type]
 			);
 		}
-		printf("Which card do you want to use to determine (enter card index): ");
-		while(!num_scanf(&num)||num!=1&&num!=2){
-			printf("Error!\n");
-			printf("Please enter again!\n");
+		while(1){
+			printf("Which card do you want to use to determine (enter card index): ");
+			if(num_scanf(&num,1,2))break;
 		}
 		num--;
 	}else{

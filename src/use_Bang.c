@@ -4,6 +4,7 @@ void use_Bang(int32_t card_index){
 	char *str[2]={"once","twice"};
 	if(BangNum!=0&&player[PlayerNow].role!=Willy_the_Kid&&!have_card(player[PlayerNow].equip,Volcanic)){
 		printf("Bang can not use twice!(unless you are Willy the Kid or you have Volcanic)\n");	
+		return;
 	}
 	for(int i=0;i<PlayerNum;i++){
 		if(i==PlayerNow||!player[i].alive)continue;
@@ -16,36 +17,18 @@ void use_Bang(int32_t card_index){
 	BangNum++;
 	get_card(&discard,&player[PlayerNow].hand,card_index);
 	if(PlayerNow==PlayerHuman){
-		printf("Which player do you want to attack (enter player index):");
 		while(1){
-			if(!num_scanf(&player_index)||player_index<1||player_index>PlayerNum){
-				printf("Error!\n");
-				printf("Please enter again!\n\n");
-				continue;
-			}
-			player_index--;
-			if(player_index==PlayerNow||!player[player_index].alive){
-				printf("You can't choose yourself or dead player!\n");
-				printf("Please enter again!\n\n");
-				continue;
-			}
-			if(distance(PlayerNow,player_index)>weapon_distance()){
-				printf("The distance between you and Player%d is %d ( > weapon distance %d), so you can't choose him/her!\n",player_index+1,distance(PlayerNow,player_index),weapon_distance());
-				printf("Please enter again!\n\n");
-				continue;
-			}else break;
+			player_scanf(&player_index);
+			if(distance(PlayerNow,player_index)<=weapon_distance())break;
+			printf("The distance between you and Player%d is %d ( > weapon distance %d ), so you can't choose him/her!\n",player_index+1,distance(PlayerNow,player_index),weapon_distance());
 		}
 	}else{
 		while(1){
-			player_index=rand()%PlayerNum;
-			if(player_index==PlayerNow||!player[player_index].alive){
-				continue;
-			}
-			if(distance(PlayerNow,player_index)>weapon_distance()){
-				continue;
-			}else break;
+			player_scanf(&player_index);
+			if(distance(PlayerNow,player_index)<=weapon_distance())break;
 		}
 	}
+	printf("Player%d uses Bang to attack player%d.\n",PlayerNow+1,player_index+1);
 	if(player[PlayerNow].role!=Slab_the_Killer){
 		if(player[player_index].role==Jourdonnais){
 			printf("Because player%d is Jourdonnais, he/she has built-in barrel.\n",player_index+1);	

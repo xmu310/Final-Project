@@ -12,10 +12,9 @@ void Kit_Carlson_draw(){
 					type_nametxt[player[PlayerNow].hand.card[ini+i].type]
 			);
 		}
-		printf("Which card do you want to put back (enter card index): ");
-		while(!num_scanf(&num)||num<1||num>3){
-			printf("Error!\n");
-			printf("Please enter again!\n\n");
+		while(1){
+			printf("Which card do you want to put back (enter card index): ");
+			if(num_scanf(&num,1,3))break;
 		}
 		num--;
 	}else{

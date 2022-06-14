@@ -2,16 +2,12 @@
 void Jesse_Jones_draw(){
 	int32_t num=0;
 	printf("Because Player%d's role is Jesse Jones, his/her first card can draw from stock piles or player's hand cards.\n",PlayerNow+1);
-	while(1){
-		printf("Which player's card do you want to choose (enter player index, -1 for stock pile): ");
-		if(PlayerNow==PlayerHuman){
-			if(!num_scanf(&num)||num<1&&num!=-1||num>PlayerNum){
-				printf("Error!\n");
-				printf("Please enter again!\n\n");
-				continue;
-			}
-			if(num==-1)break;
+	if(PlayerNow==PlayerHuman){
+		while(1){
+			printf("Which player's card do you want to choose (enter player index, 0 for stock pile): ");
+			if(!num_scanf(&num,0,PlayerNum))continue;
 			num--;
+			if(num==-1)break;
 			if(num==PlayerNow){
 				printf("You can't choose yourself!\n");
 				printf("Please enter again!\n\n");
@@ -21,7 +17,9 @@ void Jesse_Jones_draw(){
 				printf("Please enter again!\n\n");
 				continue;
 			}else break;
-		}else{
+		}
+	}else{
+		while(1){
 			if(rand()%2){
 				num=-1;
 				break;

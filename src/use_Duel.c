@@ -2,17 +2,7 @@
 void use_Duel(int32_t card_index){
 	int32_t player_index,num,turn=0,who=0;
 	get_card(&discard,&player[PlayerNow].hand,card_index);
-	printf("Which player would you want to choose (enter player index): \n");
-	if(PlayerNow==PlayerHuman){
-		while(!num_scanf(&player_index)||!is_player_exist(player_index)||!player[player_index].alive||player_index==PlayerNow){
-			printf("Error\n");
-		}
-	}else{
-		while(1){
-			player_index=rand()%PlayerNum;
-			if(player[player_index].alive&&player_index!=PlayerNow)break;
-		}
-	}
+	player_scanf(&player_index);
 	who=player_index;
 	printf("Player%d and player%d starts duel!\n",PlayerNow+1,player_index+1);
 	while(1){

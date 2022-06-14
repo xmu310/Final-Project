@@ -16,10 +16,9 @@ void use_General_Store(int32_t card_index){
 						type_nametxt[tmp.card[i].type]
 				);
 			}
-			printf("Which one do you want to choose (enter card index):");
-			while(!num_scanf(&num)||num<1||num>total){
-				printf("Error!\n");
-				printf("Please enter again!\n\n");
+			while(1){
+				printf("Which one do you want to choose (enter card index):");
+				if(num_scanf(&num,1,total))break;
 			}
 			num--;
 		}else{
