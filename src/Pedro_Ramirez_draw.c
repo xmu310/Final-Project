@@ -17,9 +17,7 @@ void Pedro_Ramirez_draw(){
 	}else{
 		while(1){
 			num=rand()%2;
-			if(num==0&&stock.num<=0)continue;
-			if(num==1&&discard.num<=0)continue;
-			break;
+			if((num==0&&stock.num>0)||(num==1&&discard.num>0))break;
 		}
 	}
 	if(num!=0){
