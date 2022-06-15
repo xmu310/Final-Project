@@ -14,7 +14,7 @@ int main(int argc,char* argv[]){
 		if(c=='s'){
 			if(sscanf(optarg,"%d%c",&SleepNum,&cc)!=1){printf("Error\n");return 0;}
 			if(SleepNum<0||SleepNum>3){printf("sleep number only allowed 0-3 (0 for press enter to continue)\n");return 0;}
-		}else{printf("Error\n");return 0;}
+		}else{printf("Error!\n");return 0;}
 	}
 	srand(time(0));
 	while(1){
