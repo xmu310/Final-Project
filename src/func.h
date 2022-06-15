@@ -10,6 +10,7 @@ void combine_pile(sPile *pile1,sPile *pile2);
 void get_stock(int32_t player_index,int32_t cardnum);//if stock pile have no card, it'll combine stock pile and dicard pile to stock pile, and shuffling, and pick a card.
 void print_player_status(int32_t player_index);
 void print_all_status();//it will wait 2 sec, then clear screen, print all status.
+void print_card(int32_t index,sPile pile,int32_t pos,int32_t times);
 void print_ascii(eAscii opt);
 void player_plus_blood(int32_t player_index);//if player's blood added to max, this function will printf message, so you don't need to deal with maxblood's problem.
 void player_minus_blood(int32_t player1_index,int32_t player2_index);

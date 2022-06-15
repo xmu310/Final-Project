@@ -10,7 +10,7 @@ void use_Jail(int32_t card_index)
 	
 	for(int i=0;i<PlayerNum;i++)
 	{
-		if(player[i].iden!=Sheriff&&i!=PlayerNow)
+		if(player[i].iden!=Sheriff&&i!=PlayerNow&&player[i].alive)
 		{
 			J_player++;
 		}

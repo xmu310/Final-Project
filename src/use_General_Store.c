@@ -9,13 +9,7 @@ void use_General_Store(int32_t card_index){
 		sleep(1);
 		if(player_index==PlayerHuman){
 			printf("There are %d card in the list:\n",total);
-			for(int i=0;i<total;i++){
-				printf("%d. (%s,%s) %s\n",i+1,
-						suit_nametxt[tmp.card[i].suit],
-						rank_nametxt[tmp.card[i].rank],
-						type_nametxt[tmp.card[i].type]
-				);
-			}
+			print_card(1,tmp,0,total);
 			while(1){
 				printf("Which one do you want to choose (enter card index):");
 				if(num_scanf(&num,1,total))break;
