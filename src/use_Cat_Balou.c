@@ -19,8 +19,7 @@ void use_Cat_Balou(int32_t card_index){
 			if(player[player_index].hand.num+player[player_index].equip.num>0)break;
 		}
 	}
-	type_scanf(player_index,&type);
-	card_scanf(player_index,type,&num);
+	card_scanf(player_index,&type,&num);
 	if(type==0)get_card(&discard,&player[player_index].hand,num);
 	if(type==1)get_card(&discard,&player[player_index].equip,num);
 	printf("Player%d discard this card.\n",player_index+1);

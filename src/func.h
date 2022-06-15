@@ -3,8 +3,7 @@
 
 void set_game();
 void player_scanf(int32_t *player_index);
-void type_scanf(int32_t player_index,int32_t *type);
-void card_scanf(int32_t player_index,int32_t type,int32_t *card_index);
+void card_scanf(int32_t player_index,int32_t *type,int32_t *card_index);
 void shuffling();
 void combine_pile(sPile *pile1,sPile *pile2);
 void get_stock(int32_t player_index,int32_t cardnum);//if stock pile have no card, it'll combine stock pile and dicard pile to stock pile, and shuffling, and pick a card.
