@@ -120,8 +120,8 @@ int main(int argc,char* argv[]){
 	}
 	printf(">>>>>>>>>>>>>>>>>>\n");
 	if(who_win()==1)printf("The winners are Sheriff and Deputy Sheriff.\n");
-	if(who_win()==2)printf("The winners is Outlaw.\n");
-	if(who_win()==3)printf("The winners is Renegade.\n");
+	if(who_win()==2)printf("The winner is Outlaw.\n");
+	if(who_win()==3)printf("The winner is Renegade.\n");
 	printf(">>>>>>>>>>>>>>>>>>\n");
 	if(player[PlayerHuman].iden==who_win()||(who_win()==1&&player[PlayerHuman].iden==Sheriff)){
 		printf("You win!\n");
