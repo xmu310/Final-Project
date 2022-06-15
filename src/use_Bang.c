@@ -80,10 +80,12 @@ void use_Bang(int32_t card_index){
 			if(find_card_index(player[player_index].hand,Missed,&num)){
 				get_card(&discard,&player[player_index].hand,num);
 				printf("Player%d uses a \"Missed\".\n",player_index+1);				
+				missnum++;
 				printf("Player%d missed %s successfully!\n",player_index+1,str[missnum-1]);
 			}else if(player[player_index].role==Calamity_Janet&&find_card_index(player[player_index].hand,Bang,&num)){
 				get_card(&discard,&player[player_index].hand,num);
 				printf("Because player%d is Calamity Janet, he/she can use a \"Bang\" as \"Missed\"\n",player_index+1);	
+				missnum++;
 				printf("Player%d missed %s successfully!\n",player_index+1,str[missnum-1]);
 			}else{
 				printf("Player%d have no \"Missed\".\n",player_index+1);
