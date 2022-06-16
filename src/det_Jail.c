@@ -27,7 +27,7 @@ int32_t det_Jail(){
         return 2;
     }else{ // still in jail, return 1
         print_ascii(aJail);
-        printf("player%d is still in the Jail :(\n", PlayerNow);
+        printf("Not Heart: player%d is still in the Jail :(\n", PlayerNow);
         get_last_card(&discard, &temp); // discard determine card
         return 1;
     }    
