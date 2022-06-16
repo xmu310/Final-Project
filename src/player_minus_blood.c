@@ -1,6 +1,5 @@
 #include"func.h"
-int32_t player_minus_blood(int32_t player1_index,int32_t player2_index){
-	if(!is_player_exist(player1_index)||!is_player_exist(player2_index))return 0;
+void player_minus_blood(int32_t player1_index,int32_t player2_index){
 	player[player2_index].blood--;
 	printf("Player%d's blood has been -1 !\n",player2_index+1);
 	if(player[player2_index].role==Bart_Cassidy){
@@ -27,5 +26,4 @@ int32_t player_minus_blood(int32_t player1_index,int32_t player2_index){
 			get_stock(player1_index,3);
 		}
 	}
-	return 1;
 }

@@ -10,7 +10,7 @@ void use_Jail(int32_t card_index)
 	
 	for(int i=0;i<PlayerNum;i++)
 	{
-		if(player[i].iden!=Sheriff&&i!=PlayerNow)
+		if(player[i].iden!=Sheriff&&i!=PlayerNow&&player[i].alive)
 		{
 			J_player++;
 		}
@@ -19,20 +19,16 @@ void use_Jail(int32_t card_index)
 	
 	int J_who=0;
 	if(PlayerNow==PlayerHuman){
-		printf("Which player would you send him or her into the jail?\n");
 		while(1)
 		{
-		if(num_scanf(&J_who)&&player[J_who-1].iden!=Sheriff&&J_who-1!=PlayerNow)
-			{
-			J_who--;
-			break;	
-			}
+		player_scanf(&J_who);
+		if(player[J_who].iden!=Sheriff&&J_who!=PlayerNow)break;	
 			else{printf("JAIL ERROR QAQ\n");}
 		}
 	}else{
 		while(1)
 		{
-			J_who=rand()%PlayerNum;
+			player_scanf(&J_who);
 		if(player[J_who].iden!=Sheriff&&J_who!=PlayerNow)
 			{
 			break;	

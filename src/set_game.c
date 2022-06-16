@@ -40,7 +40,7 @@ void set_game(){
 	for(int i=0;i<100;i++){
 		int32_t x,y;
 		x=rand()%PlayerNum;
-		while((y=rand()%PlayerNum)==x)1;
+		while((y=rand()%PlayerNum)==x);
 		eIden tmp=player[x].iden;
 		player[x].iden=player[y].iden;
 		player[y].iden=tmp;

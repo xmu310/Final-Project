@@ -4,6 +4,9 @@
 // else if get out of jail, return 2 
 int32_t det_Jail(){
 
+        int32_t card_index = -1;
+        find_card_index(player[PlayerNow].equip, Jail, &card_index);
+	get_card(&discard, &player[PlayerNow].equip, card_index);
     printf("Jail determine:");
     sPile temp; // determine card
     temp.num=0;
@@ -19,9 +22,6 @@ int32_t det_Jail(){
     if(temp.card[0].suit==Heart){ // heart -> get out of jail, return 2
         printf("Heart: player%d escapes from the Jail!\n", PlayerNow);
         // discard jail
-        int32_t card_index = -1;
-        find_card_index(player[PlayerNow].equip, Jail, &card_index);
-        get_card(&discard, &player[PlayerNow].equip, card_index);
         print_all_status();
         get_last_card(&discard, &temp); // discard determine card
         return 2;
