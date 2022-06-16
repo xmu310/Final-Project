@@ -74,7 +74,7 @@ int main(int argc,char* argv[]){
 					if(player[PlayerNow].role==Calamity_Janet)break;
 				}
 			}
-			if(num==-1){printf("Player%d chooses skip!\n",PlayerNow+1);break;}
+			if(num==-1){printf("Player%d chooses skip! (use card)\n",PlayerNow+1);break;}
 			printf("Player%d uses %d. %s\n",PlayerNow+1,num+1,type_nametxt[player[PlayerNow].hand.card[num].type]);
 			if(player[PlayerNow].hand.card[num].type==Missed&&player[PlayerNow].role==Calamity_Janet){
 					printf("Because player%d is Calamity Janet, his/her Missed changed to Bang.\n",PlayerNow+1);
@@ -105,7 +105,7 @@ int main(int argc,char* argv[]){
 					num=rand()%player[PlayerNow].hand.num;
 				}else num=-1;
 			}
-			if(num==-1){printf("Player%d chooses skip!\n",PlayerNow+1);break;}
+			if(num==-1){printf("Player%d chooses skip! (discard card)\n",PlayerNow+1);break;}
 			get_card(&discard,&player[PlayerNow].hand,num);
 			printf("Player%d discards a card to discard pile.\n",PlayerNow+1);
 			if(player[PlayerNow].role==Sid_Ketchum){
