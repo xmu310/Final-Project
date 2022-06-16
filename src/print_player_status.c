@@ -10,12 +10,12 @@ void print_player_status(int32_t player_index){
 		if(player_index!=PlayerHuman){
 			printf("hand/equip card number: (%d,%d)\n",tmp.hand.num,tmp.equip.num);
 		}
-		if(player_index==PlayerHuman)printf("hand card number: %d\n",tmp.hand.num);
+		if(player_index==PlayerHuman)printf("\nhand card number: %d\n",tmp.hand.num);
 		if(player_index==PlayerHuman)for(int j=0;j<tmp.hand.num;j++){
 			print_card(1+j,tmp.hand,j,1);
 			printf("%s\n",type_helptxt[tmp.hand.card[j].type]);
 		}
-		if(player_index==PlayerHuman)printf("equip card number: %d\n",tmp.equip.num);
+		if(player_index==PlayerHuman)printf("\nequip card number: %d\n",tmp.equip.num);
 		for(int j=0;j<tmp.equip.num;j++){
 			print_card(1+j,player[player_index].equip,j,1);
 			printf("%s\n",type_helptxt[tmp.equip.card[j].type]);
