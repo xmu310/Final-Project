@@ -36,8 +36,6 @@ void use_Jail(int32_t card_index)
 		}
 	}
 	get_card(&player[J_who].equip,&player[PlayerNow].hand,card_index);
-	
+	print_ascii(aJail);
 	printf("PLAYER %d WOULD BE in the jail haha !  \n",J_who+1);
-
-
 }
