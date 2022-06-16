@@ -15,8 +15,11 @@ Players are separated into 3 factions: Sheriff (and  Deputies), Outlaws, and Ren
 ## How to Play
  1. download our project
  2. run `make`
- 3. run `./project`
- 4. start playing and have fun!
+ 3. run `./project [OPTION]`  
+ (option `-s second`)  
+ If *second* is 1, 2, or 3, it means pause seconds between each step.  
+ If *second* is 0, you have to press `enter` to continue.  
+ 5. start playing and have fun!
 
 ## References
 * Bang! rules:
