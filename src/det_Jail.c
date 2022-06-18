@@ -7,6 +7,8 @@ int32_t det_Jail(){
         int32_t card_index = -1;
         find_card_index(player[PlayerNow].equip, Jail, &card_index);
 	get_card(&discard, &player[PlayerNow].equip, card_index);
+	sleep(1);
+	fflush(stdout);
     printf("Jail determine:");
     sPile temp; // determine card
     temp.num=0;
@@ -14,11 +16,14 @@ int32_t det_Jail(){
         shuffling();
         get_last_card(&temp, &stock);
     }
+    sleep(1);
+    fflush(stdout);
     printf("(%s,%s) %s\n",
             suit_nametxt[temp.card[0].suit],
             rank_nametxt[temp.card[0].rank],
             type_nametxt[temp.card[0].type]);
-    
+   sleep(1);
+   fflush(stdout);
     if(temp.card[0].suit==Heart){ // heart -> get out of jail, return 2
         printf("Heart: player%d escapes from the Jail!\n", PlayerNow);
         // discard jail

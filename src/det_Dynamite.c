@@ -9,6 +9,8 @@ void det_Dynamite(){
         shuffling();
         get_last_card(&temp, &stock);
     }
+    sleep(1);
+    fflush(stdout);
     printf("(%s,%s) %s\n",
             suit_nametxt[temp.card[0].suit],
             rank_nametxt[temp.card[0].rank],
@@ -16,6 +18,8 @@ void det_Dynamite(){
     if(temp.card[0].suit==Spade && (temp.card[0].rank>=2 && temp.card[0].rank<=9)){
         // explode <- spade 2~9
         print_ascii(aExplode);
+	sleep(1);
+        fflush(stdout);
         printf("Spade 2-9: Dynamite explodes.\nplayer%d -3 blood\n", PlayerNow+1);
 
         player[PlayerNow].blood -= 3; // -3 blood
@@ -31,6 +35,8 @@ void det_Dynamite(){
         if(player[PlayerNow].blood <= 0){ // dying
             while(PlayerNow==PlayerHuman && have_card(player[PlayerNow].hand, Beer) && player[PlayerNow].blood<player[PlayerNow].maxblood){
                 // playerHuman -> use beer?
+		sleep(1);
+	        fflush(stdout);
                 printf("Do you want to use Beer and +1 blood? (y/n)");
                 char opt[100]={0};
                 scanf("%[^\n]",opt);
@@ -55,6 +61,8 @@ void det_Dynamite(){
                 }
             }
             if(player[PlayerNow].blood <= 0){ // dead
+		sleep(1);
+		fflush(stdout);
                 printf("player%d is dead.\n", PlayerNow+1);
                 player_dead(PlayerNow);
                 // return 2; // continue;
@@ -67,6 +75,7 @@ void det_Dynamite(){
 		next_player=(next_player+1)%PlayerNum;
 		if(player[next_player].alive)break;
 	}
+	sleep(1);
         printf("Dinamite pass to Player%d\n", next_player+1);
         int32_t card_index = -1;
         find_card_index(player[PlayerNow].equip, Dynamite, &card_index);

@@ -1,6 +1,8 @@
 #include"func.h"
 
 void print_ascii(eAscii opt){
+	sleep(1);
+	fflush(stdout);
     if(opt==aStart){
         printf(" +--^----------,--------,-----,--------^-,                     | \n");
         printf(" | |||||||||   `--------'     |          O      ____    _ -- |    \\ \n");

@@ -1,5 +1,7 @@
 #include"func.h"
 void player_minus_blood(int32_t player1_index,int32_t player2_index){
+	sleep(1);
+	fflush(stdout);
 	player[player2_index].blood--;
 	printf("Player%d's blood has been -1 !\n",player2_index+1);
 	if(player[player2_index].role==Bart_Cassidy){

@@ -3,6 +3,8 @@ sCard det(int32_t player_index){
 	sPile tmp=player[player_index].hand;
 	sCard re;
 	int32_t num=0;
+	sleep(1);
+	fflush(stdout);
 	if(player[player_index].role!=Lucky_Duke){
 		printf("Because Player%d isn't Lucky Duke, he/she can only gets one card to determine.\n",player_index+1);
 		get_stock(player_index,1);
@@ -30,5 +32,6 @@ sCard det(int32_t player_index){
 	print_card(num+1,tmp,tmp.num-2+num,1);
 	get_last_card(&discard,&tmp);
 	get_last_card(&discard,&tmp);
+	sleep(1);
 	return re;
 }
