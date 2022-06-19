@@ -1,6 +1,5 @@
 # Final-Project: 🤠 Bang! 🔫
  *Author: 李邦安 趙安庭 洪莘淳*
-### (未完待續XD)
 
 ## Introduction
 BANG! is a board game that requires 4-7 players.  
