@@ -25,7 +25,7 @@ int32_t det_Jail(){
    sleep(1);
    fflush(stdout);
     if(temp.card[0].suit==Heart){ // heart -> get out of jail, return 2
-        printf("Heart: player%d escapes from the Jail!\n", PlayerNow);
+        printf("Heart: player%d escapes from the Jail!\n", PlayerNow+1);
         // discard jail
         print_all_status();
         get_last_card(&discard, &temp); // discard determine card
